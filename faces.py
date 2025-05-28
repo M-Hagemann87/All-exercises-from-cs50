@@ -1,4 +1,4 @@
-Print("Type something with the emoticons to see them being transformed into Emojis"))
+print("Type something with the emoticons :) and :( to see them being transformed into Emojis")
 text = input()
 text = text.replace(":)","🙂")
 text = text.replace(":(","🙁")
