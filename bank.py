@@ -3,12 +3,12 @@ def main ():
     greeting = greeting.strip()
     greeting = greeting.lower()
 
-    if greeting == "hello" or greeting == "hello!" or greeting == "hello,":
+    if greeting == "hello" or greeting == "hello, newman":
         print("$0")
-    elif greeting[0]=="h":
-        print("$20")
+    elif greeting[0] == "h":
+         print("$20")
     else:
-        print("$100")
+         print("$100")
 
 
 main()
