@@ -6,7 +6,7 @@ mediatypes = extensions[-4:]
 if mediatypes == ".gif":
     print("image/gif")
 elif mediatypes == ".jpg":
-    print("image/jpg")
+    print("image/jpeg")
 elif mediatypes == "jpeg":
     print("image/jpeg")
 elif mediatypes == ".png":
@@ -18,4 +18,4 @@ elif mediatypes == ".txt":
 elif mediatypes == ".zip":
     print("application/zip")
 else:
-    print("Media Type Not Fould")
+    print("application/octet-stream")
