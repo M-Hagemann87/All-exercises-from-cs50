@@ -1,8 +1,10 @@
 def main():
     answer = input("What is the Answer to the Great Question of Life, the Universe, and Everything?")
     answer = answer.strip()
+    answer = answer.lower()
+    print(answer)
     match answer:
-        case "42"|"Forty Two"|"forty-two"|"forty Two"|"Forty two"|"Forty-two"|"forty-Two"|"forty two"|"forty-Two":
+        case "42"|"forty two"|"forty-two":
             print("Yes")
         case _:
             print ("No")
