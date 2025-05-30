@@ -5,7 +5,7 @@ def main():
     logic(n)
 
 def logic(n):
-    coin  = input("Insert Coin: ")
+    print("Insert Coin: ", end="")
     while n >= 0:
         coin  = input()
         coin = int(coin)
@@ -14,11 +14,11 @@ def logic(n):
         coin = int(coin)
         n = n  - coin
         if  n > 0:
-            print("Amount Due: ",n)
+            print("Amount Due:", n)
         elif n  <= 0:
             change = abs(n)
             print("Change Owed:", change)
-        break
+            break
 
 
 main()
