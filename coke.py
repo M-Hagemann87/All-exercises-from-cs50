@@ -17,7 +17,7 @@ def logic(n):
         elif n  <= 0:
             change = abs(n)
             print("Change Owed:", change)
-            break
+        break
 
 
 main()
