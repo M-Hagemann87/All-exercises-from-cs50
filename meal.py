@@ -1,20 +1,22 @@
-time = input("What time is it?")
+def main():
+    time = input("What time is it?:  ")
+    convert(time)
 
-hours = time[0]+time[1]
-hours1 = ''.join(c for c in hours if c.isdigit())
-minutes = time[-2:]
+def convert(time):
+    time = time.split(":")
+    hour = time[0]
+    minute = time[1]
+    hour = float(hour)
+    minute = float(minute)
+    minute1 = ((minute/0.6)/100)
+    hours1 = float(hour+minute1)
+    if 7 <= hours1 <= 8:
+        print("breakfast time")
+    elif 12 <= hours1 <= 13:
+        print("lunch time")
+    elif 18 <= hours1 <= 19:
+        print("dinner time")
+    return()
 
-if hours1 == "7":
-    print("breakfast time")
-if hours1 == "8" and minutes == "00":
-    print("breakfast time")
 
-if hours1 == "12":
-    print("lunch time")
-if hours1 == "13" and minutes == "00":
-    print("lunch time")
-
-if hours1 == "18":
-    print("dinner time")
-if hours1 == "19" and minutes == "00":
-    print("dinner time")
+main()
