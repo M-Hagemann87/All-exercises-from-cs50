@@ -3,7 +3,9 @@ try:
         fraction = input("Fraction: ").strip()
         x,y = map(int, fraction.split("/"))
         solution = (x / y)*100
+        solution = round(solution)
         solution = int(solution)
+
 
         if solution > 100:
             continue
