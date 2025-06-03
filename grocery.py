@@ -14,5 +14,5 @@ while True:
                 count[word] = 1
 
         for items in sorted(count):
-            print(f"{count[items]}", " ", f"{items}")
+            print(f"{count[items]}",f"{items}")
         break
