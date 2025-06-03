@@ -9,7 +9,7 @@ while True:
         count={}
         for word in history:
             if word in count:
-                count[word] =+ 1
+                count[word] += 1
             else:
                 count[word] = 1
 
