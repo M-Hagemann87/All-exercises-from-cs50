@@ -1,5 +1,5 @@
-try:
-    while True:
+while True:
+    try:
         fraction = input("Fraction: ").strip()
         x,y = map(int, fraction.split("/"))
         solution = (x / y)*100
@@ -17,7 +17,7 @@ try:
             print(solution,"%", sep="")
         break
 
-except ValueError:
-    print("ValueError")
-except ZeroDivisionError:
-    print("ZeroDivisionError")
+    except ValueError:
+        print("ValueError")
+    except ZeroDivisionError:
+        print("ZeroDivisionError")
