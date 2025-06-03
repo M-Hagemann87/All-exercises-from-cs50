@@ -9,6 +9,8 @@ food_list = [
     {"Taco": 3.00},
     {"Tortilla Salad": 8.00}
 ]
+prices = 0.0
+
 
 while True:
     try:
@@ -18,10 +20,12 @@ while True:
         for foods in food_list:
             if item in foods:
                 price = foods[item]
-                prices = float()
+                price = float(price)
                 prices = prices + price
                 print(f"Total: ${prices:.2f}")
                 found = True
                 break
+            if not found:
+                continue
     except EOFError:
         break
