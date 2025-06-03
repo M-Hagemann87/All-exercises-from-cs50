@@ -21,8 +21,11 @@ while True:
             mm1, dd1, yyyy1 = map(int, date_in.split("/"))
             mm1_formated = f"{mm1:02d}"
             dd1_formated = f"{dd1:02d}"
-            print(yyyy1, mm1_formated, dd1_formated, sep="-")
-            break
+            if dd1 < 31 and mm1 < 12:
+                print(yyyy1, mm1_formated, dd1_formated, sep="-")
+                break
+            else:
+                continue
 
         elif "," in date_in:
             mm2, dd2, yyyy2 = date_in.split(" ")
@@ -33,7 +36,11 @@ while True:
             for month in months:
                 if mm2 in month:
                     month_numb = month[mm2]
-                    print(yyyy2, month_numb, dd2_formated, sep="-")
-            break
+                    if dd2 < 31:
+                        print(yyyy2, month_numb, dd2_formated, sep="-")
+                        exit()
+                    else:
+                        continue
     except ValueError:
         continue
+
