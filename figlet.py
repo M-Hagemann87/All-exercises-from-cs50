@@ -26,8 +26,8 @@ try:
         print(figlet.renderText(text_input))
 
     else:
-          print("Invalid usage")
-
+        print("Invalid usage")
+        sys.exit(1)
 except:
         sys.exit(1)
 
