@@ -11,6 +11,7 @@ try:
             x = random.choice(y)
             set_font = Figlet(font=x)
             text_input =  input("Input: ")
+            print("Output:")
             print(set_font.renderText(text_input))
 
     elif len(sys.argv) == 3 and sys.argv[1] in ["-f", "--font"]:
@@ -21,6 +22,7 @@ try:
 
         figlet.setFont(font=choice_font)
         text_input = input("Input: ")
+        print("Output:")
         print(figlet.renderText(text_input))
 
     else:
