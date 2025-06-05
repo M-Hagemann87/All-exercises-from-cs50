@@ -12,5 +12,5 @@ try:
 
 except EOFError:
     print("")
-    print("Adieu, adieu, to ", x)
+    print("Adieu, adieu, to", x)
     exit(1)
