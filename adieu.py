@@ -8,7 +8,9 @@ try:
         name = input("Name: ")
         history.append(name)
         x = p.join((history))
-        print("Adieu, adieu, to ", x)
-        
+
+
 except EOFError:
+    print("")
+    print("Adieu, adieu, to ", x)
     exit(1)
