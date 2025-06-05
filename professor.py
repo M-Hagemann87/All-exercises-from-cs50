@@ -13,18 +13,21 @@ while True:
                     try:
                         level = int(input("Level: "))
                         if level == 1:
-                            n = 10
+                            n1 = 0
+                            n2 = 9
                             break
                         elif level == 2:
-                            n = 100
+                            n1 = 10
+                            n2 = 99
                             break
                         elif level == 3:
-                            n = 1000
+                            n1 = 100
+                            n2 = 999
                             break
                     except ValueError:
                         continue
-            number1 = random.randint(0, n)
-            number2 = random.randint(0, n)
+            number1 = random.randint(n1, n2)
+            number2 = random.randint(n1, n2)
             result = number1 + number2
             while True:
                 try:
