@@ -13,4 +13,4 @@ try:
 except EOFError:
     print("")
     print("Adieu, adieu, to", x)
-    exit(1)
+    exit(0)
