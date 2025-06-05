@@ -31,7 +31,7 @@ while True:
             result = number1 + number2
             while True:
                 try:
-                    in_calc = int(input(f"{number1} + {number2} ="))
+                    in_calc = int(input(f"{number1} + {number2} = "))
                     if tries <= 1:
                         if result == in_calc:
                             score += 1
