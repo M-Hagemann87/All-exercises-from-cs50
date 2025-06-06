@@ -1,19 +1,20 @@
 def main():
-    try:
-        call_1 = str(input("Fraction: "))
-        call_2 = convert(call_1)
-        p_result = gauge(call_2)
-        if p_result.isdigit():
-            print(p_result,"%", sep="")
-        else:
-            print(p_result)
-
-    except ValueError:
-       print("ValueError")
-    except ZeroDivisionError:
-       print("ZeroDivisionError")
-
-
+    while True:
+        try:
+            call_1 = str(input("Fraction: "))
+            call_2 = convert(call_1)
+            p_result = gauge(call_2)
+            if p_result.isdigit():
+                print(p_result,"%", sep="")
+                exit(0)
+            else:
+                print(p_result)
+                exit(0)
+            break
+        except ValueError:
+            continue
+        except ZeroDivisionError:
+            continue
 
 def convert(fraction):
     while True:
