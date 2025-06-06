@@ -25,9 +25,21 @@ def test_plate1():
 def test_plate2():
     assert is_valid("AAAAA,") == False
     assert is_valid("AA!AA") == False
+    assert is_valid("AA!AA") == False
 
 def test_plate3():
-    assert is_valid("AA!AA") == False
+    assert is_valid("AA0") == False
+    assert is_valid("AAA0") == False
+    assert is_valid("AAAA0") == False
+    assert is_valid("AAAAA0") == False
+    assert is_valid("AA1") == True
+    assert is_valid("AA10") == True
+    assert is_valid("AA100") == True
+    assert is_valid("AA1000") == True
+    assert is_valid("AAA1") == True
+    assert is_valid("AAA10") == True
+    assert is_valid("AAA100") == True
+    assert is_valid("AAAA10") == True
 
 def test_plate4():
     assert is_valid("AAAAA,") == False
