@@ -15,6 +15,9 @@ def main():
             continue
         except ZeroDivisionError:
             continue
+        except AttributeError:
+            continue
+
 
 def convert(fraction):
     while True:
