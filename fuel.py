@@ -9,10 +9,10 @@ def main():
             print(p_result)
 
     except ValueError:
-        print("ValueError")
+ #       print("ValueError")
         exit(0)
     except ZeroDivisionError:
-        print("ZeroDivisionError")
+ #       print("ZeroDivisionError")
         exit(0)
 
 
