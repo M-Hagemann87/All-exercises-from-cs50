@@ -6,6 +6,9 @@ def test_convert():
     assert convert("3/4") == 75
     assert convert("2/4") == 50
     assert convert("1/4") == 25
+    assert convert("3/10") == 30
+    assert convert("1/100") == 1
+
 
 def test_gauge():
 
