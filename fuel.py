@@ -3,13 +3,15 @@ def main():
         call_1 = input("Fraction: ")
         call_2 = convert(call_1)
         p_result = gauge(call_2)
+
         if p_result.isdigit():
             print(p_result,"%", sep="")
         else:
             print(p_result)
 
+
     except ValueError:
-        exit(1)
+        exit(0)
     except ZeroDivisionError:
         print("ZeroDivisionError")
 
