@@ -10,10 +10,10 @@ def main():
 
     except ValueError:
  #       print("ValueError")
-        exit(0)
+        exit(1)
     except ZeroDivisionError:
  #       print("ZeroDivisionError")
-        exit(0)
+        exit(1)
 
 
 def convert(fraction):
