@@ -1,11 +1,10 @@
 while True:
     try:
         fraction = input("Fraction: ").strip()
-        x,y = map(int, fraction.split("/"))
+        x, y = map(int, fraction.split("/"))
         solution = (x / y)*100
         solution = round(solution)
         solution = int(solution)
-
 
         if solution > 100:
             continue
@@ -14,7 +13,7 @@ while True:
         elif solution < 2:
             print("E")
         elif 1 < solution < 99:
-            print(solution,"%", sep="")
+            print(solution, "%", sep="")
         break
 
     except ValueError:
