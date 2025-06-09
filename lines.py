@@ -15,10 +15,10 @@ def main():
 
             elif len_sys < 2:
                 print("Too few command-line arguments")
-                break
+                exit(1)
             elif len_sys > 2:
                 print("Too many command-line arguments")
-                break
+                exit(1)
             else:
                 call_1 = sys.argv[1]
                 name_file = f"{call_1}"
