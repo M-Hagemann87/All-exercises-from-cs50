@@ -30,9 +30,9 @@ def main():
                     break
         except ValueError:
             exit(1)
-       # except FileNotFoundError:
-       #     print("File does not exit")
-        #    exit(0)
+        except FileNotFoundError:
+            print("File does not exit")
+            exit(1)
 
 if __name__ =="__main__":
     main()
