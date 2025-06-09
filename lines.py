@@ -14,7 +14,7 @@ def main():
                 break
             else:
                 call_1 = sys.argv[1]
-                name_file = f"{call_1}.txt"
+                name_file = f"{call_1}"
 
                 with open(name_file) as file:
                     result = 0
@@ -28,9 +28,11 @@ def main():
 
                     print(result)
                     break
-        except FileNotFoundError:
-            print("File does not exit")
-            exit(0)
+        except ValueError:
+            exit(1)
+       # except FileNotFoundError:
+       #     print("File does not exit")
+        #    exit(0)
 
 if __name__ =="__main__":
     main()
