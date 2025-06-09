@@ -20,17 +20,17 @@ def main():
                     result = 0
                     for line in file:
                         lines_txt = line.strip()
-                        if not lines_txt:           # blank line
+                        if not lines_txt:
                             continue
-                        if lines_txt.startswith("#"):  # comment line
+                        if lines_txt.startswith("#"):
                             continue
                         result += 1
 
                     print(result)
                     break
-        except FileNotFoundError():
-            Print("File does not exit")
-            continue
+        except FileNotFoundError:
+            print("File does not exit")
+            exit(0)
 
 if __name__ =="__main__":
     main()
