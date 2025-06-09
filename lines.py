@@ -6,7 +6,14 @@ def main():
         try:
 
             len_sys = len(sys.argv)
-            if len_sys < 2:
+            ext_file = sys.argv[-1]
+            x, y = ext_file.split(".")
+
+            if y != "py":
+                print("Not a Python file")
+                exit(1)
+
+            elif len_sys < 2:
                 print("Too few command-line arguments")
                 break
             elif len_sys > 2:
@@ -28,8 +35,6 @@ def main():
 
                     print(result)
                     break
-        except ValueError:
-            exit(1)
         except FileNotFoundError:
             print("File does not exit")
             exit(1)
