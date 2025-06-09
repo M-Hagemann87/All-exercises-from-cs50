@@ -34,9 +34,9 @@ def convert(fraction):
             else:
                 return fraction
         except ValueError:
-            print("ValueError")
+            continue
         except ZeroDivisionError:
-            print("ZeroDivisionError")
+            continue
 
 def gauge(percentage):
 
