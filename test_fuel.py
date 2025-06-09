@@ -22,5 +22,5 @@ def test_convert_invalid():
     with pytest.raises(ZeroDivisionError):
         convert("1/0")
 
-with pytest.raises(ValueError):
-    convert("cat/dog")
+    with pytest.raises(ValueError):
+        convert("cat/dog")
