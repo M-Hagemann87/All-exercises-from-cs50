@@ -4,13 +4,8 @@ def main():
             call_1 = str(input("Fraction: "))
             call_2 = convert(call_1)
             p_result = gauge(call_2)
-            if p_result.isdigit():
-                print(p_result,"%", sep="")
-                exit(0)
-            else:
-                print(p_result)
-                exit(0)
-            break
+            print(p_result)
+            exit(0)
         except ValueError:
             continue
         except ZeroDivisionError:
@@ -50,8 +45,8 @@ def gauge(percentage):
             return percentage
         elif 1 < percentage < 99:
             percentage = str(percentage)
+            percentage = (percentage+"%")
             return percentage
 
 if __name__ =="__main__":
     main()
-
