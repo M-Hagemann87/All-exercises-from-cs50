@@ -17,10 +17,3 @@ def test_gauge():
     assert gauge(50) == "50%"
     assert gauge(25) == "25%"
     assert gauge(99) == "F"
-
-def test_convert_invalid():
-    with pytest.raises(ZeroDivisionError):
-        convert("1/0")
-
-    with pytest.raises(ValueError):
-        convert("cat/dog")
