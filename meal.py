@@ -8,15 +8,15 @@ def main():
     elif 18 <= hours1 <= 19:
         print("dinner time")
 
-def convert(time):
-    time = time.split(":")
-    hour = time[0]
-    minute = time[1]
+def convert(hours):
+    hours = hours.split(":")
+    hour = hours[0]
+    minute = hours[1]
     hour = float(hour)
     minute = float(minute)
     minute1 = ((minute/0.6)/100)
-    time = float(hour+minute1)
-    return time
+    hours = float(hour+minute1)
+    return hours
 
 
 if __name__ == "__main__":
