@@ -16,7 +16,8 @@ def convert(time):
         print("lunch time")
     elif 18 <= hours1 <= 19:
         print("dinner time")
-    return()
+    exit(0)
 
 
-main()
+if __name__ == "__main__":
+    main()
