@@ -1,6 +1,12 @@
 def main():
     time = input("What time is it?:  ")
-    convert(time)
+    hours1 = convert(time)
+    if 7 <= hours1 <= 8:
+        print("breakfast time")
+    elif 12 <= hours1 <= 13:
+        print("lunch time")
+    elif 18 <= hours1 <= 19:
+        print("dinner time")
 
 def convert(time):
     time = time.split(":")
@@ -9,14 +15,8 @@ def convert(time):
     hour = float(hour)
     minute = float(minute)
     minute1 = ((minute/0.6)/100)
-    hours1 = float(hour+minute1)
-    if 7 <= hours1 <= 8:
-        print("breakfast time")
-    elif 12 <= hours1 <= 13:
-        print("lunch time")
-    elif 18 <= hours1 <= 19:
-        print("dinner time")
-    exit(0)
+    time = float(hour+minute1)
+    return time
 
 
 if __name__ == "__main__":
