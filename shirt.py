@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageOps
 import sys
 
 def main():
@@ -30,10 +30,8 @@ def main():
             else:
                 with Image.open(before) as base:
                     with Image.open("shirt.png") as shirt:
-                        box = (0, 200, 1200, 1370)
-                        base = base.crop(box)
                         shirt_s = shirt.resize((1150, 1100))
-                        base.paste(shirt_s, (35, 70), shirt_s)
+                        base.paste(shirt_s, (35, 270), shirt_s)
 
                         base.save(after)
 
