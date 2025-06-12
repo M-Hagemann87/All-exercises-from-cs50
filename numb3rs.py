@@ -1,4 +1,5 @@
 import re
+import sys
 
 def main():
     print(validate(input("IPv4 Address: ").strip()))
@@ -20,7 +21,9 @@ def validate(ip):
             return False
 
     except ValueError:
-        return False
+        print("False")
+        sys.exit(False)
+
 
 if __name__ == "__main__":
     main()
