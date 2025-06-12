@@ -33,3 +33,7 @@ def test_invalid():
     assert validate("1.a.1.1") == False
     assert validate("1.1.a.1") == False
     assert validate("1.1.1.a") == False
+
+def test_argument():
+    for ip in ["cat.123.123.123", "123.cat.123.123", "123.123.cat.123","123.123.123cat"]:
+        assert validate(ip) == False
