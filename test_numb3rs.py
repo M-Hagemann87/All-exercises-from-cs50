@@ -22,7 +22,7 @@ def test_wrongrange():
 
 def test_invalid():
     assert validate("-1.-1.-1.-1") == False
-    assert validate("256.256.256.256") == False
+    assert validate("255.255.255.256") == False
     assert validate("-11.1.1.1") ==  False
     assert validate("1.-1.1.1") == False
     assert validate("1.1.-1.1") == False

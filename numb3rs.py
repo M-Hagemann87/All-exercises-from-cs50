@@ -21,8 +21,7 @@ def validate(ip):
             return False
 
     except ValueError:
-        print("False")
-        sys.exit(False)
+        return False
 
 
 if __name__ == "__main__":
