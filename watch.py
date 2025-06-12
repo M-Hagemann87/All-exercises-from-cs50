@@ -6,9 +6,9 @@ def main():
 
 def parse(s):
 
-    matches = re.search(r"\"?https?://(www\.)?youtube\.com/embed/([a-zA-Z0-9_]+).+?[^.gov|.edu|.br|.com|.net]?$", s)
+    matches = re.search(r"^(<iframe)?([a-zA-Z0-9_ =\"]*)\"?https?://(www\.)?youtube\.com/embed/([a-zA-Z0-9_]+).+?$", s)
     if matches:
-        print("https://youtu.be/" + matches.group(2))
+        print("https://youtu.be/" + matches.group(4))
         exit(0)
 
 if __name__ == "__main__":
