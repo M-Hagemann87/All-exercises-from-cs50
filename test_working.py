@@ -7,7 +7,7 @@ def test_s():
     assert convert("1 AM to 12 PM") == "01:00 to 12:00"
     assert convert("7 PM to 7 AM") == "19:00 to 07:00"
     assert convert("3 PM to 3 AM") == "15:00 to 03:00"
-    assert convert("2 PM to2 AM") == "14:00 to 02:00"
+    assert convert("2 PM to 2 AM") == "14:00 to 02:00"
     assert convert("9:13 AM to 5:14 PM") == "09:13 to 17:14"
     assert convert("2:21 AM to 2:21 PM") == "02:21 to 14:21"
     assert convert("1:59 AM to 1:59 PM") == "01:59 to 13:59"
