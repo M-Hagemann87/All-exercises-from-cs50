@@ -6,7 +6,7 @@ def main():
 
 def parse(s):
 
-    matches = re.search(r"\"?https?://(www\.)?youtube\.com/embed/([a-zA-Z0-9_]+).+?$", s)
+    matches = re.search(r"\"?https?://(www\.)?youtube\.com/embed/([a-zA-Z0-9_]+).+?[^.gov|.edu|.br|.com|.net]?$", s)
     if matches:
         print("https://youtu.be/" + matches.group(2))
         exit(0)
