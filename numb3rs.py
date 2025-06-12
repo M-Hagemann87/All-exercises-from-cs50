@@ -12,15 +12,15 @@ def validate(ip):
             z = int(z)
             w = int(w)
             if 0 <= x <= 255 and 0 <= y <= 255 and 0 <= z <= 255 and 0 <= w <= 255:
-                return "Valid"
+                return True
 
             else:
-                return "Invalid"
+                return False
         else:
-            return "Invalid"
+            return False
 
     except ValueError:
-        return "Invalid"
+        return False
 
 if __name__ == "__main__":
     main()
