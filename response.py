@@ -8,9 +8,9 @@ def main():
 def email(s):
 
     validators.email(s)
-    if email:
+    if email(s):
         return "Valid"
-    if not email:
+    if not email(s):
         return "Invalid"
 
 
