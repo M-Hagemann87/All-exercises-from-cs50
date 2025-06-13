@@ -7,10 +7,10 @@ def main():
 
 def email(s):
 
-    validators.email(s)
-    if email(s):
+    email = validators.email(s)
+    if email:
         return "Valid"
-    if not email(s):
+    if not email:
         return "Invalid"
 
 
