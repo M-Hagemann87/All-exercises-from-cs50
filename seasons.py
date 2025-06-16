@@ -1,6 +1,7 @@
 from datetime import date
 import operator
 import inflect
+import sys
 p = inflect.engine()
 
 def main():
@@ -19,8 +20,7 @@ def calc(t):
         t = (text_min.capitalize())
         return t
     except ValueError:
-        return "Invalid date"
-
+        sys.exit("Invalid date")
 
 if __name__ == "__main__":
     main()
