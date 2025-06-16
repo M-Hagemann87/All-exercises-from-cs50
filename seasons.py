@@ -5,7 +5,7 @@ p = inflect.engine()
 
 def main():
 
-    print(calc(input("Date of Birth: ")))
+    print(calc(input("Date of Birth: ")),"minutes")
 
 def calc(t):
     try:
