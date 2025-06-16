@@ -1,0 +1,25 @@
+import pytest
+from seasons import calc
+
+def test_calc():
+
+    assert calc("1987-10-10") == "Nineteen million, eight hundred twenty thousand, one hundred sixty"
+    assert calc("1732-07-05") == "One hundred fifty-four million, seventy-five thousand, six hundred eighty"
+    assert calc("1995-01-03") == "Sixteen million, fifteen thousand, six hundred eighty"
+
+
+def test_wrongrange():
+
+    with pytest.raises(SystemExit):
+        calc("Invalid date")
+
+"""
+    assert calc("cat") == "Invalid date"
+    assert calc("cat.dog.cat.dog") == "Invalid date"
+    assert calc("1.1.1.1.1") == "Invalid date"
+    assert calc("1") == "Invalid date"
+
+def test_invalid():
+    assert calc("-1.-1.-1.-1") == "Invalid date"
+    assert calc("256.256.256.256") == "Invalid date"
+"""
