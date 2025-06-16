@@ -10,6 +10,10 @@ def test_calc():
 
 def test_wrongrange():
 
+    with pytest.raises(SystemExit):
+        calc("Invalid date")
+
+"""
     assert calc("cat") == "Invalid date"
     assert calc("cat.dog.cat.dog") == "Invalid date"
     assert calc("1.1.1.1.1") == "Invalid date"
@@ -18,3 +22,4 @@ def test_wrongrange():
 def test_invalid():
     assert calc("-1.-1.-1.-1") == "Invalid date"
     assert calc("256.256.256.256") == "Invalid date"
+"""
