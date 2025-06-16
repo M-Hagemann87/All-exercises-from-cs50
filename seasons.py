@@ -15,7 +15,7 @@ def calc(t):
         total = operator.__sub__(today_1 , date_birth)
         total_days =  total.days
         total_minutes = total_days*24*60
-        text_min = p.number_to_words(total_minutes)
+        text_min = p.number_to_words(total_minutes, andword="")
         t = (text_min.capitalize())
         return t
     except ValueError:
