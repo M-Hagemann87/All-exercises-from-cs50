@@ -15,4 +15,4 @@ class PDF(FPDF):
 # Instantiation of inherited class
 pdf = PDF(orientation="P", unit="mm", format=(210, 297))
 pdf.add_page()
-pdf.output("out_shirt_pdf.pdf")
+pdf.output("shirtificate.pdf")
