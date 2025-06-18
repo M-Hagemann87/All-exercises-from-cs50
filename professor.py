@@ -1,51 +1,68 @@
 import random
 
 def main():
-    level = get_level()
-    score = 0
-    questions = 0
+    score = int()
+    questions = int()
+    level = get_level(int(input("Level: ")))
 
-    while questions < 10:
-        number1, number2 = generate_integer(level)
-        result = number1 + number2
-        correct = ask_question(number1, number2, result)
-        if correct:
-            score += 1
-        questions += 1
 
-    print("Score:", score)
+    while True:
+        level1 = generate_integer(level)
+        x = level1[0]
+        y = level1[1]
+        result = x + y
+        tries = 0
+        while True:
+            if questions == 10:
+                print("Score: ",score)
+                exit(0)
+            else:
+                try:
+                    if tries == 3:
+                        questions += 1
+                        print(f"{x} + {y} = {result}")
+                        break
 
-def get_level():
+                    in_calc = int(input(f"{x} + {y} = "))
+                    if result == in_calc:
+                        score += 1
+                        questions += 1
+                        tries = 0
+                        break
+                    else:
+                        print("EEE")
+                        tries += 1
+                except ValueError:
+                    print("EEE")
+                    tries += 1
+                    continue
+
+
+def get_level(n):
     while True:
         try:
-            level = int(input("Level (1-Easy, 2-Medium, 3-Hard): "))
-            if level in [1, 2, 3]:
-                return level
+            if n in [1, 2, 3]:
+                return n
+            else:
+                raise ValueError
         except ValueError:
-            pass  # Ignore and reprompt
+            continue
+
 
 def generate_integer(level):
-    if level == 1:
-        return random.randint(0, 9), random.randint(0, 9)
-    elif level == 2:
-        return random.randint(10, 99), random.randint(10, 99)
-    else:
-        return random.randint(100, 999), random.randint(100, 999)
-
-def ask_question(number1, number2, result):
-    tries = 0
-    while tries < 3:
-        try:
-            answer = int(input(f"{number1} + {number2} = "))
-            if answer == result:
-                return True
-            else:
-                print("EEE")
-        except ValueError:
-            print("EEE")
-        tries += 1
-    print(f"{number1} + {number2} = {result}")
-    return False
+        if level == 1:
+            n1 = 0
+            n2 = 9
+        elif level == 2:
+            n1 = 10
+            n2 = 99
+        elif level == 3:
+            n1 = 100
+            n2 = 999
+        x = random.randint(n1, n2)
+        y = random.randint(n1, n2)
+        level =  [x,y]
+        return level
 
 if __name__ == "__main__":
     main()
