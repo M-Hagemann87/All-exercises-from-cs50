@@ -10,9 +10,10 @@ def get_level(n):
             if n in [1,2,3]:
                 return n
             else:
-                raise ValueError
+                exit(1)
+
         except ValueError:
-            continue
+            exit(1)
 
 def generate_integer(level):
     score = int()
