@@ -1,10 +1,10 @@
 import random
 
+
 def main():
     score = int()
     questions = int()
-    level = get_level(int(input("Level: ")))
-
+    level = get_level()
 
     while True:
         level1 = generate_integer(level)
@@ -38,9 +38,10 @@ def main():
                     continue
 
 
-def get_level(n):
+def get_level():
     while True:
         try:
+            int(input("Level: ")
             if n in [1, 2, 3]:
                 return n
             else:
