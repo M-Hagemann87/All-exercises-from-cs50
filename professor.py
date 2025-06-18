@@ -9,8 +9,10 @@ def get_level(n):
     while True:
         try:
             n = int(input("Level: "))
-            if n == 1 or 2 or 3:
+            if n in [1,2,3]:
                 return n
+            else:
+                raise ValueError
         except ValueError:
             continue
 
