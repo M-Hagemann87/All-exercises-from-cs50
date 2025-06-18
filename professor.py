@@ -1,14 +1,12 @@
 import random
 
 def main():
-    n = 0
-    level = get_level(n)
+    level = get_level(int(input("Level: ")))
     print("Score: ", generate_integer(level))
 
 def get_level(n):
     while True:
         try:
-            n = int(input("Level: "))
             if n in [1,2,3]:
                 return n
             else:
