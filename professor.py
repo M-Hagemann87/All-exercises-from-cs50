@@ -10,10 +10,9 @@ def get_level(n):
             if n in [1,2,3]:
                 return n
             else:
-                exit(1)
-
+                raise ValueError
         except ValueError:
-            exit(1)
+            continue
 
 def generate_integer(level):
     score = int()
@@ -53,6 +52,8 @@ def generate_integer(level):
                         print("EEE")
                         tries += 1
                 except ValueError:
+                    print("EEE")
+                    tries += 1
                     continue
 
 if __name__ == "__main__":
