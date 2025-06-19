@@ -1,38 +1,45 @@
-import sys
 from PIL import Image, ImageOps
-import os
+import sys
 
 def main():
-    # Validate CLI arguments
-    if len(sys.argv) < 3:
+
+   len_sys = len(sys.argv)
+
+   if len_sys < 3:
         sys.exit("Too few command-line arguments")
-    elif len(sys.argv) > 3:
+
+   elif len_sys > 3:
         sys.exit("Too many command-line arguments")
 
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+   elif len_sys ==3:
 
-    # Validate extensions
-    valid_ext = [".jpg", ".jpeg", ".png"]
-    input_ext = os.path.splitext(input_file)[1].lower()
-    output_ext = os.path.splitext(output_file)[1].lower()
+        try:
+            after = sys.argv[-1]
+            x1, y1 = after.lower().split(".")
+            before = sys.argv[-2]
+            x2, y2 = before.lower().split(".")
 
-    if input_ext not in valid_ext:
-        sys.exit("Invalid input")
-    if output_ext not in valid_ext:
-        sys.exit("Invalid output")
-    if input_ext != output_ext:
-        sys.exit("Input and output have different extensions")
+            if y1 not in ["jpg","jpeg","png"]:
+                print("invalid input")
+                exit(1)
 
-    # Try to open and process the image
-    try:
-        shirt = Image.open("shirt.png")
-        before = Image.open(input_file)
-        resized = ImageOps.fit(before, shirt.size)
-        resized.paste(shirt, shirt)  # Use shirt as mask
-        resized.save(output_file)
-    except FileNotFoundError:
-        sys.exit("Input does not exist")
+            elif y1 != y2:
+                print("Input and output have different extensions")
+                exit(1)
 
-if __name__ == "__main__":
+            else:
+                with Image.open(before) as base:
+                    with Image.open("shirt.png") as shirt:
+                        box = (0, 200, 1200, 1370)
+                        base = base.crop(box)
+                        shirt_s = shirt.resize((1150, 1100))
+                        base.paste(shirt_s, (35, 70), shirt_s)
+                        base.save(after)
+
+        except ValueError:
+            sys.exit("Invalid input")
+        except FileNotFoundError:
+            sys.exit("Input does not exist")
+
+if __name__ =="__main__":
     main()
