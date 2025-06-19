@@ -34,7 +34,6 @@ def main():
                         base = base.crop(box)
                         shirt_s = shirt.resize((1150, 1100))
                         base.paste(shirt_s, (35, 70), shirt_s)
-
                         base.save(after)
 
 
