@@ -1,46 +1,29 @@
-from PIL import Image, ImageOps
+import os
+import re
 import sys
+import shutil
 
 def main():
+    if len(sys.argv) != 3:
+        sys.exit("Usage: python pshirt.py before/ after/")
 
-   len_sys = len(sys.argv)
+    before, after = sys.argv[1], sys.argv[2]
 
-   if len_sys < 3:
-        sys.exit("Too few command-line arguments")
+    if not os.path.isdir(before):
+        sys.exit(f"Before directory '{before}' does not exist")
+    if not os.path.isdir(after):
+        os.makedirs(after)
 
-   elif len_sys > 3:
-        sys.exit("Too many command-line arguments")
+    for filename in os.listdir(before):
+        match = re.match(r"^([^-]+)-([A-Z])\.png$", filename)
+        if not match:
+            continue
 
-   elif len_sys ==3:
+        name, house = match.groups()
+        file_src = os.path.join(before, filename)
+        file_dst = os.path.join(after, f"{house}-{name}.png")
 
-        try:
-            after = sys.argv[-1]
-            x1, y1 = after.lower().split(".")
-            before = sys.argv[-2]
-            x2, y2 = before.lower().split(".")
+        shutil.copy(file_src, file_dst)
 
-            if y1 not in ["jpg","jpeg","png"]:
-                print("invalid input")
-                exit(1)
-
-            elif y1 != y2:
-                print("Input and output have different extensions")
-                exit(1)
-
-            else:
-                with Image.open(before) as base:
-                    with Image.open("shirt.png") as shirt:
-                        box = (0, 200, 1200, 1370)
-                        base = base.crop(box)
-                        shirt_s = shirt.resize((1150, 1100))
-                        base.paste(shirt_s, (35, 70), shirt_s)
-                        base.save(after)
-
-
-        except ValueError:
-            sys.exit("Invalid input")
-
-
-
-if __name__ =="__main__":
+if __name__ == "__main__":
     main()
