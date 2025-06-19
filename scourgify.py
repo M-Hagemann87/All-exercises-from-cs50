@@ -15,8 +15,8 @@ def main():
                 with open(before_file) as file:
                     reader = csv.DictReader(file)
                     for row in reader:
-                        surname, first_name = row["name"].strip().split(",")
-                        new_name_order = f"{first_name.strip()} {surname.strip()}"
+                        surname, first_name = row["name"].split(",")
+                        new_name_order = f'{first_name} {surname}'
                         students.append({"name": new_name_order, "house": row["house"]})
 
                 with open(after_file, "w", newline="") as file:
