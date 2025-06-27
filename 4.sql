@@ -1,3 +1,3 @@
 SELECT "first_name", "last_name" FROM "players"
-WHERE "birth_country" != 'USA' OR "birth_country" != 'United States' OR "birth_country" != 'US'
+WHERE "birth_country" != 'USA'
 ORDER BY "first_name", "last_name";
