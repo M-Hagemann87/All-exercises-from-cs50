@@ -4,8 +4,9 @@ FROM "salaries"
 JOIN "players" ON "players"."id" = "salaries"."player_id"
 JOIN "performances" ON "performances"."player_id" = "salaries"."player_id"
 WHERE "salaries"."year" = "performances"."year"
-GROUP BY "salaries"."year"
-ORDER BY "salaries"."player_id",
+ORDER BY "players"."id",
 "salaries"."year" DESC,
 "performances"."H" DESC,
 "salaries"."salary" DESC;
+
+---GROUP BY "salaries"."year"
