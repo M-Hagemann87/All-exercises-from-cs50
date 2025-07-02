@@ -3,3 +3,11 @@ JOIN "teams" ON "teams"."id" = "salaries"."team_id"
 GROUP BY "teams"."name"
 ORDER BY "average salary"
 LIMIT 5;
+
+
+
+---SELECT * FROM "salaries"
+---JOIN "teams" ON "teams"."id" = "salaries"."team_id"
+---GROUP BY "teams"."name"
+---ORDER BY "average salary"
+---LIMIT 50;
