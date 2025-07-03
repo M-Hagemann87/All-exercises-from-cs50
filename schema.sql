@@ -19,7 +19,7 @@ CREATE TABLE "airlines" (
 );
 
 CREATE TABLE "flights"(
-    "id"
+    "id",
     "flight_number"  NUMERIC,
     "passagers_id" NOT NULL,
     "airlines_id" NOT NULL,
