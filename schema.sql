@@ -33,8 +33,6 @@ CREATE TABLE "flights"(
     "heading" TEXT NOT NULL,
     "departure_time" NUMERIC,
     "arrival_time" NUMERIC,
-    "passenger_id" INTEGER NOT NULL,
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passenger_id" REFERENCES "passengers"("id"),
     FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
