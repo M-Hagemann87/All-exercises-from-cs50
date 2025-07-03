@@ -12,7 +12,7 @@ CREATE TABLE "check_ins" (
     "flight_id" INTEGER NOT NULL,
     "passenger_id" INTEGER NOT NULL,
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passenger_id" REFERENCES "passenger"("id"),
+    FOREIGN KEY "passenger_id" REFERENCES "passengers"("id"),
     FOREIGN KEY "flight_id" REFERENCES "flights"("id")
 );
 
@@ -35,6 +35,6 @@ CREATE TABLE "flights"(
     "arrival_time" NUMERIC,
     "passenger_id" INTEGER NOT NULL,
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passenger_id" REFERENCES "passenger"("id"),
+    FOREIGN KEY "passenger_id" REFERENCES "passengers"("id"),
     FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
