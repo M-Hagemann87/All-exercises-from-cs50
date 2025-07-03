@@ -2,17 +2,16 @@ CREATE TABlE "passengers"(
     "first_name" TEXT,
     "last_name" TEXT,
     "age"  INTEGER,
-    "check_ins_id",
-    FOREIGN KEY "check_ins_id" REFERENCES "check_ins"("id")
+    "check_id" INTEGER,
+    FOREIGN KEY "check_id" REFERENCES "check"("id")
 );
 
-CREATE TABLE "check_ins" (
+CREATE TABLE "check" (
     "id" INTEGER,
     "datetime" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "flight_id" INTEGER,
-    "passenger_last_name" TEXT,
-    FOREIGN KEY "flight_id" REFERENCES "flights"("id"),
     PRIMARY KEY ("id")
+    FOREIGN KEY "flight_id" REFERENCES "flights"("id"),
 );
 
 CREATE TABLE "airlines" (
@@ -30,7 +29,8 @@ CREATE TABLE "flights"(
     "heading" TEXT,
     "departure_time" NUMERIC,
     "arrival_time" NUMERIC,
+    "check_id" INTEGER,
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passenger_last_name" REFERENCES "passengers"("last_name"),
+    FOREIGN KEY "check_id" REFERENCES "check"("id")
     FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
