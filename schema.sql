@@ -6,7 +6,7 @@ CREATE TABlE "passagers"(
 );
 
 CREATE TABLE "chech_ins" (
-    "date_time" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "date" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "flight_id",
     "passager_last_name",
     "passager_first_name",
@@ -28,7 +28,7 @@ CREATE TABLE "flights"(
     "flight_number" INTEGER,
     "passagers_id",
     "airlines_id",
-    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL,'BOS)),
+    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL,'BOS')),
     "heading",
     "departure_time",
     "arrival_time",
