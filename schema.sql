@@ -20,7 +20,7 @@ CREATE TABLE "airlines" (
 
 CREATE TABLE "flights"(
     "id",
-    "flight_number"  NUMERIC,
+    "flight_number",
     "passagers_id" NOT NULL,
     "airlines_id" NOT NULL,
     "departing",
@@ -28,6 +28,6 @@ CREATE TABLE "flights"(
     "departure_time" NUMERIC NOT NULL,
     "arrival_time" NUMERIC NOT NULL,
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passagers_id" REFERENCES"passagers"("id"),
+    FOREIGN KEY "passagers_id" REFERENCES "passagers"("id"),
     FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
