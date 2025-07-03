@@ -1,38 +1,40 @@
-CREATE TABLE "passengers" (
-    "id" INTEGER PRIMARY KEY,
+CREATE TABLE "passengers"(
+    "id" INTEGER,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
-    "age" INTEGER NOT NULL
-);
-
-CREATE TABLE "airlines" (
-    "id" INTEGER PRIMARY KEY,
-    "name" TEXT NOT NULL
-);
-
--- Airline can operate in multiple concourses
-CREATE TABLE "airline_concourses" (
-    "airline_id" INTEGER,
-    "concourse" TEXT CHECK ("concourse" IN ('A','B','C','D','E','F','T')),
-    FOREIGN KEY ("airline_id") REFERENCES "airlines"("id")
-);
-
-CREATE TABLE "flights" (
-    "id" INTEGER PRIMARY KEY,
-    "flight_number" INTEGER NOT NULL,
-    "airlines_id" INTEGER NOT NULL,
-    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL','BOS')),
-    "heading" TEXT NOT NULL,
-    "departure_time" NUMERIC NOT NULL,
-    "arrival_time" NUMERIC NOT NULL,
-    FOREIGN KEY ("airlines_id") REFERENCES "airlines"("id")
+    "age"  INTEGER NOT NULL,
+    PRIMARY KEY ("id")
 );
 
 CREATE TABLE "check_ins" (
-    "id" INTEGER PRIMARY KEY,
+    "id" INTEGER,
     "datetime" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "flight_id" INTEGER NOT NULL,
     "passenger_id" INTEGER NOT NULL,
-    FOREIGN KEY ("flight_id") REFERENCES "flights"("id"),
-    FOREIGN KEY ("passenger_id") REFERENCES "passengers"("id")
+    PRIMARY KEY ("id"),
+    FOREIGN KEY "passenger_id" REFERENCES "passenger"("id"),
+    FOREIGN KEY "flight_id" REFERENCES "flights"("id")
+);
+
+CREATE TABLE "airlines" (
+    "id" INTEGER,
+    "name" TEXT NOT NULL,
+    "concourse" TEXT NOT NULL CHECK ("concourse" IN ('A','B','C','D','E','F','T')),
+    "flight_id" INTEGER NOT NULL,
+    PRIMARY KEY ("id"),
+    FOREIGN KEY "flight_id" REFERENCES "flights"("id")
+);
+
+CREATE TABLE "flights"(
+    "id" INTEGER,
+    "flight_number" INTEGER NOT NULL,
+    "airlines_id"  INTEGER NOT NULL,
+    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL','BOS')),
+    "heading" TEXT NOT NULL,
+    "departure_time" NUMERIC,
+    "arrival_time" NUMERIC,
+    "passenger_id" INTEGER NOT NULL,
+    PRIMARY KEY ("id"),
+    FOREIGN KEY "passenger_id" REFERENCES "passenger"("id"),
+    FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
