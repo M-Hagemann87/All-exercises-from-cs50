@@ -2,7 +2,6 @@ CREATE TABlE "passagers"(
     "first_name" TEXT,
     "last_name" TEXT,
     "age"  INTEGER,
-    PRIMARY KEY ("first_name"),
     PRIMARY KEY ("last_name")
 );
 
@@ -13,7 +12,6 @@ CREATE TABLE "chech_ins" (
     "passager_first_name",
     FOREIGN KEY "flight_id" REFERENCES "flights"("id"),
     FOREIGN KEY "passager_last_name" REFERENCES "passagers"("last_name"),
-    FOREIGN  KEY "passager_first_name" REFERENCES "airlines"("first_name")
 );
 
 CREATE TABLE "airlines" (
@@ -38,5 +36,4 @@ CREATE TABLE "flights"(
     FOREIGN KEY "passagers_id" REFERENCES "passagers"("id"),
     FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id"),
     FOREIGN KEY "passager_last_name" REFERENCES "passagers"("last_name"),
-    FOREIGN  KEY "passager_first_name" REFERENCES "passagers"("first_name")
 );
