@@ -8,5 +8,3 @@ ORDER BY "players"."id",
 "salaries"."year" DESC,
 "performances"."H" DESC,
 "salaries"."salary" DESC;
-
----GROUP BY "salaries"."year"
