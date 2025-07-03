@@ -1,17 +1,16 @@
-CREATE TABlE "passagers"(
+CREATE TABlE "passengers"(
     "first_name" TEXT,
     "last_name" TEXT,
     "age"  INTEGER,
     PRIMARY KEY ("last_name")
 );
 
-CREATE TABLE "chech_ins" (
+CREATE TABLE "check_ins" (
     "date" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "flight_id",
-    "passager_last_name",
-    "passager_first_name",
+    "passenger_last_name",
     FOREIGN KEY "flight_id" REFERENCES "flights"("id"),
-    FOREIGN KEY "passager_last_name" REFERENCES "passagers"("last_name"),
+    FOREIGN KEY "passenger_last_name" REFERENCES "passengers"("last_name"),
 );
 
 CREATE TABLE "airlines" (
@@ -23,17 +22,15 @@ CREATE TABLE "airlines" (
 
 CREATE TABLE "flights"(
     "id",
-    "passager_last_name",
-    "passager_first_name",
+    "passenger_last_name",
+    "passenger_first_name",
     "flight_number" INTEGER,
-    "passagers_id",
     "airlines_id",
-    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL,'BOS')),
+    "departing" TEXT NOT NULL CHECK ("departing" IN ('ATL','BOS')),
     "heading",
     "departure_time",
     "arrival_time",
     PRIMARY KEY ("id"),
-    FOREIGN KEY "passagers_id" REFERENCES "passagers"("id"),
-    FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id"),
-    FOREIGN KEY "passager_last_name" REFERENCES "passagers"("last_name"),
+    FOREIGN KEY "passenger_last_name" REFERENCES "passengers"("last_name"),
+    FOREIGN  KEY "airlines_id" REFERENCES "airlines"("id")
 );
