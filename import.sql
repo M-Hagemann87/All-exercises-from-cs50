@@ -14,7 +14,9 @@ CREATE TABLE "meteorites_temp"(
     "name" TEXT,
     "id" INTEGER NOT NULL,
     "nametype" TEXT,
+    "class" TEXT,
     "mass" REAL,
+    "discovery" TEXT,
     "year" INTEGER,
     "lat" REAL,
     "long" REAL,
@@ -47,6 +49,8 @@ DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 --6
 
 ---
-INSERT INTO "meteorites"
-SELECT * FROM "meteorites_temp"
+INSERT INTO "meteorites" ("name", "id", "nametype", "mass", "year", "lat", "long")
+SELECT "name", "id", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
 ORDER BY "year", "name";
+
+DROP TABLE IF EXISTS "meteorites_temp";
