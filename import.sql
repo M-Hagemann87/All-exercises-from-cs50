@@ -9,11 +9,10 @@ CREATE TABLE "meteorites_temp"(
     "year" INTEGER,
     "lat" REAL,
     "long" REAL
-    ORDER BY "year", "name"
 );
 
 --2
---.import --csv --skip 1 meteorites.csv meteorites_temp
+.import --csv --skip 1 meteorites.csv meteorites_temp
 
 --3 (1)
 UPDATE "meteorites_temp" SET "mass" = NULL

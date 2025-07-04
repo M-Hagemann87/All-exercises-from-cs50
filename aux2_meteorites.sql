@@ -1,6 +1,9 @@
 SELECT * FROM "meteorites_temp"
 LIMIT  100;
 
+SELECT * FROM "meteorites"
+LIMIT  500;
+
 -----
 SELECT * FROM "meteorites_temp"
 WHERE "year" IS NULL
@@ -11,6 +14,7 @@ WHERE "lat" IS NULL
 LIMIT  10;
 ---- RESTART::
 DROP TABLE IF EXISTS "meteorites_temp";
+DROP TABLE IF EXISTS "meteorites";
 
 CREATE TABLE "meteorites_temp"(
     "name" TEXT,
