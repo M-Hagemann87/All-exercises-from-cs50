@@ -1,4 +1,16 @@
 --1
+CREATE TABLE "meteorites"(
+    "name" TEXT,
+    "id" INTEGER NOT NULL,
+    "nametype" TEXT,
+    "class" TEXT,
+    "mass" REAL,
+    "discovery" TEXT,
+    "year" INTEGER,
+    "lat" REAL,
+    "long" REAL
+);
+
 CREATE TABLE "meteorites_temp"(
     "name" TEXT,
     "id" INTEGER NOT NULL,
@@ -35,17 +47,7 @@ UPDATE "meteorites_temp" SET "mass" = ROUND("mass",2);
 --5 (3)
 DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 --6
-CREATE TABLE "meteorites"(
-    "name" TEXT,
-    "id" INTEGER NOT NULL,
-    "nametype" TEXT,
-    "class" TEXT,
-    "mass" REAL,
-    "discovery" TEXT,
-    "year" INTEGER,
-    "lat" REAL,
-    "long" REAL
-);
+
 ---
 INSERT INTO "meteorites"
 SELECT * FROM "meteorites_temp"
