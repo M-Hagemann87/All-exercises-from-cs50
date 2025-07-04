@@ -6,7 +6,8 @@ CREATE TABLE "meteorites"(
     "mass" REAL,
     "year" INTEGER,
     "lat" REAL,
-    "long" REAL
+    "long" REAL,
+    PRIMARY KEY "id"
 );
 
 CREATE TABLE "meteorites_temp"(
@@ -16,7 +17,8 @@ CREATE TABLE "meteorites_temp"(
     "mass" REAL,
     "year" INTEGER,
     "lat" REAL,
-    "long" REAL
+    "long" REAL,
+    PRIMARY KEY "id"
 );
 
 --2
