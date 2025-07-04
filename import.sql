@@ -24,7 +24,7 @@ CREATE TABLE "meteorites_temp"(
 );
 
 --2
---.import --csv --skip 1 meteorites.csv meteorites_temp
+.import --csv --skip 1 meteorites.csv meteorites_temp
 
 --3 (1)
 UPDATE "meteorites_temp" SET "mass" = NULL
@@ -49,8 +49,8 @@ DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 --6
 
 ---
-INSERT INTO "meteorites" ("name", "id", "nametype", "mass", "year", "lat", "long")
-SELECT "name", "id", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
+INSERT INTO "meteorites" ("name", "nametype", "mass", "year", "lat", "long")
+SELECT "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
 ORDER BY "year", "name";
 
 DROP TABLE IF EXISTS "meteorites_temp";
