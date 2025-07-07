@@ -1,4 +1,4 @@
--- 1. Create final cleaned table with exactly the required columns
+-- 1. Create the final table with the correct schema
 CREATE TABLE "meteorites" (
     "id" INTEGER PRIMARY KEY,
     "name" TEXT,
@@ -9,54 +9,46 @@ CREATE TABLE "meteorites" (
     "reclong" REAL
 );
 
--- 2. Create a temporary table matching the CSV file structure
+-- 2. Create a temporary table to match the CSV file structure
 CREATE TABLE "meteorites_temp" (
     "name" TEXT,
     "id" INTEGER,
     "nametype" TEXT,
     "recclass" TEXT,
-    "mass" REAL,
+    "mass" TEXT,
     "fall" TEXT,
-    "year" INTEGER,
-    "reclat" REAL,
-    "reclong" REAL,
+    "year" TEXT,
+    "reclat" TEXT,
+    "reclong" TEXT,
     "GeoLocation" TEXT
 );
 
--- 3. Import the data from CSV
+-- 3. Import the CSV data, skipping the header
 .import --csv --skip 1 meteorites.csv meteorites_temp
 
--- 4. Clean empty values and convert them to NULL
-UPDATE "meteorites_temp" SET "mass" = NULL WHERE "mass" = '';
-UPDATE "meteorites_temp" SET "year" = NULL WHERE "year" = '';
-UPDATE "meteorites_temp" SET "reclat" = NULL WHERE "reclat" = '';
-UPDATE "meteorites_temp" SET "reclong" = NULL WHERE "reclong" = '';
+-- 4. Normalize empty strings to NULL
+UPDATE meteorites_temp SET mass = NULL WHERE TRIM(mass) = '';
+UPDATE meteorites_temp SET year = NULL WHERE TRIM(year) = '';
+UPDATE meteorites_temp SET reclat = NULL WHERE TRIM(reclat) = '';
+UPDATE meteorites_temp SET reclong = NULL WHERE TRIM(reclong) = '';
 
--- 5. Round decimal fields to 2 decimal places
-UPDATE "meteorites_temp" SET "mass" = ROUND("mass", 2);
-UPDATE "meteorites_temp" SET "reclat" = ROUND("reclat", 2);
-UPDATE "meteorites_temp" SET "reclong" = ROUND("reclong", 2);
+-- 5. Remove rows with nametype = 'Relict'
+DELETE FROM meteorites_temp WHERE LOWER(nametype) = 'relict';
 
--- 6. Remove "Relict" entries
-DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
-
--- 7. Transfer cleaned and ordered data into final table with new IDs
-WITH ordered AS (
+-- 6. Insert cleaned, sorted, and converted data into final table
+WITH cleaned AS (
     SELECT
-        ROW_NUMBER() OVER (ORDER BY "year", "name") AS "id",
-        "name",
-        "nametype",
-        "mass",
-        "year",
-        "reclat",
-        "reclong"
-    FROM "meteorites_temp"
+        ROW_NUMBER() OVER (ORDER BY CAST(year AS INTEGER), name) AS id,
+        name,
+        nametype,
+        ROUND(CAST(mass AS REAL), 2) AS mass,
+        CAST(year AS INTEGER) AS year,
+        ROUND(CAST(reclat AS REAL), 2) AS reclat,
+        ROUND(CAST(reclong AS REAL), 2) AS reclong
+    FROM meteorites_temp
 )
-INSERT INTO "meteorites" (
-    "id", "name", "nametype", "mass", "year", "reclat", "reclong"
-)
-SELECT "id", "name", "nametype", "mass", "year", "reclat", "reclong"
-FROM ordered;
+INSERT INTO meteorites (id, name, nametype, mass, year, reclat, reclong)
+SELECT id, name, nametype, mass, year, reclat, reclong FROM cleaned;
 
--- 8. Drop the temp table
-DROP TABLE IF EXISTS "meteorites_temp";
+-- 7. Drop the temporary table
+DROP TABLE IF EXISTS meteorites_temp;
