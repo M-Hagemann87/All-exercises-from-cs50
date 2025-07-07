@@ -49,8 +49,8 @@ DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 --6
 
 ---
-INSERT INTO "meteorites" ("name", "nametype", "mass", "year", "lat", "long")
-SELECT "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
+INSERT INTO "meteorites" ("id", "name", "nametype", "mass", "year", "lat", "long")
+SELECT "id", "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
 ORDER BY "year", "name";
 
 DROP TABLE IF EXISTS "meteorites_temp";
