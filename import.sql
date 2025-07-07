@@ -50,11 +50,11 @@ DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 
 UPDATE meteorites_temp
 SET
-    "mass" = NULLIF("mass", ''),
-    "year" = NULLIF("year", ''),
-    "lat" = NULLIF("lat", ''),
+    mass = NULLIF(mass, ''),
+    year = NULLIF(year, ''),
+    lat = NULLIF(lat, ''),
     "long" = NULLIF("long", '');
-    
+
 ---
 INSERT INTO "meteorites" ("id", "name", "nametype", "mass", "year", "lat", "long")
 SELECT "id", "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
