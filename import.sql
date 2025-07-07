@@ -28,9 +28,9 @@ CREATE TABLE "meteorites_temp" (
 -- 4. Convert empty strings to NULL using NULLIF
 UPDATE meteorites_temp
 SET
-    mass = NULLIF(mass, ''),
-    year = NULLIF(year, ''),
-    lat = NULLIF(lat, ''),
+    "mass" = NULLIF("mass", ''),
+    "year" = NULLIF("year", ''),
+    "lat" = NULLIF("lat", ''),
     "long" = NULLIF("long", '');
 
 -- 5. Delete all rows with nametype = 'Relict'
