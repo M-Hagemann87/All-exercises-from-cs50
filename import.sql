@@ -1,45 +1,46 @@
--- Create the final table with exact column names and order
+-- 1. Create final cleaned table with exactly the required columns
 CREATE TABLE "meteorites" (
     "id" INTEGER PRIMARY KEY,
     "name" TEXT,
     "nametype" TEXT,
     "mass" REAL,
     "year" INTEGER,
-    "lat" REAL,
-    "long" REAL
+    "reclat" REAL,
+    "reclong" REAL
 );
 
--- Create a temp table with extra columns for the CSV import
+-- 2. Create a temporary table matching the CSV file structure
 CREATE TABLE "meteorites_temp" (
     "name" TEXT,
     "id" INTEGER,
     "nametype" TEXT,
-    "class" TEXT,
+    "recclass" TEXT,
     "mass" REAL,
-    "discovery" TEXT,
+    "fall" TEXT,
     "year" INTEGER,
-    "lat" REAL,
-    "long" REAL
+    "reclat" REAL,
+    "reclong" REAL,
+    "GeoLocation" TEXT
 );
 
--- Import the CSV, skipping the header row
+-- 3. Import the data from CSV
 .import --csv --skip 1 meteorites.csv meteorites_temp
 
--- Replace empty strings with NULL
+-- 4. Clean empty values and convert them to NULL
 UPDATE "meteorites_temp" SET "mass" = NULL WHERE "mass" = '';
 UPDATE "meteorites_temp" SET "year" = NULL WHERE "year" = '';
-UPDATE "meteorites_temp" SET "lat" = NULL WHERE "lat" = '';
-UPDATE "meteorites_temp" SET "long" = NULL WHERE "long" = '';
+UPDATE "meteorites_temp" SET "reclat" = NULL WHERE "reclat" = '';
+UPDATE "meteorites_temp" SET "reclong" = NULL WHERE "reclong" = '';
 
--- Round decimals to two places
+-- 5. Round decimal fields to 2 decimal places
 UPDATE "meteorites_temp" SET "mass" = ROUND("mass", 2);
-UPDATE "meteorites_temp" SET "lat" = ROUND("lat", 2);
-UPDATE "meteorites_temp" SET "long" = ROUND("long", 2);
+UPDATE "meteorites_temp" SET "reclat" = ROUND("reclat", 2);
+UPDATE "meteorites_temp" SET "reclong" = ROUND("reclong", 2);
 
--- Remove meteorites with nametype = 'Relict'
+-- 6. Remove "Relict" entries
 DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
 
--- Insert cleaned, sorted, and renumbered data into final table
+-- 7. Transfer cleaned and ordered data into final table with new IDs
 WITH ordered AS (
     SELECT
         ROW_NUMBER() OVER (ORDER BY "year", "name") AS "id",
@@ -47,13 +48,15 @@ WITH ordered AS (
         "nametype",
         "mass",
         "year",
-        "lat",
-        "long"
+        "reclat",
+        "reclong"
     FROM "meteorites_temp"
 )
-INSERT INTO "meteorites" ("id", "name", "nametype", "mass", "year", "lat", "long")
-SELECT "id", "name", "nametype", "mass", "year", "lat", "long"
+INSERT INTO "meteorites" (
+    "id", "name", "nametype", "mass", "year", "reclat", "reclong"
+)
+SELECT "id", "name", "nametype", "mass", "year", "reclat", "reclong"
 FROM ordered;
 
--- Clean up
+-- 8. Drop the temp table
 DROP TABLE IF EXISTS "meteorites_temp";
