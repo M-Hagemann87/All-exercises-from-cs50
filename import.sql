@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS "meteorites_temp";
-DROP TABLE IF EXISTS "meteorites";
-
 CREATE TABLE "meteorites_temp" (
     "name" TEXT,
     "id" INTEGER,
