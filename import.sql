@@ -1,0 +1,52 @@
+--1
+CREATE TABLE "meteorites"(
+    "id" INTEGER,
+    "name" TEXT,
+    "class" TEXT,
+    "mass" REAL,
+    "discovery" TEXT,
+    "year" INTEGER,
+    "lat" REAL,
+    "long" REAL,
+    PRIMARY KEY("id")
+);
+
+CREATE TABLE "meteorites_temp"(
+    "name" TEXT,
+    "id" INTEGER NOT NULL,
+    "nametype" TEXT,
+    "class" TEXT,
+    "mass" REAL,
+    "discovery" TEXT,
+    "year" INTEGER,
+    "lat" REAL,
+    "long" REAL,
+    PRIMARY KEY ("id")
+);
+
+--2
+.import --csv --skip 1 meteorites.csv meteorites_temp
+
+--3 (1)
+UPDATE "meteorites_temp" SET
+    "mass" = NULLIF("mass", ''),
+    "year" = NULLIF("year", ''),
+    "lat" = NULLIF("lat", ''),
+    "long" = NULLIF("long", '');
+
+--4 (2)
+UPDATE "meteorites_temp" SET "lat" = ROUND("lat",2);
+
+UPDATE "meteorites_temp" SET "long" = ROUND("long",2);
+
+UPDATE "meteorites_temp" SET "mass" = ROUND("mass",2);
+--5 (3)
+DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
+--6
+
+---
+INSERT INTO "meteorites" ("name", "class", "mass", "discovery", "year", "lat", "long")
+SELECT "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
+ORDER BY "year", "name";
+
+DROP TABLE IF EXISTS "meteorites_temp";
