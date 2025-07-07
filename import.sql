@@ -2,9 +2,8 @@
 CREATE TABLE "meteorites"(
     "name" TEXT,
     "id" INTEGER NOT NULL,
-    "class" TEXT,
+    "nametype" TEXT,
     "mass" REAL,
-    "discovery" TEXT,
     "year" INTEGER,
     "lat" REAL,
     "long" REAL,
