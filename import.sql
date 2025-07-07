@@ -1,6 +1,6 @@
 CREATE TABLE "meteorites_temp" (
     "name" TEXT,
-    "id" INTEGER,
+    "id" INTEGER NOT NULL,
     "nametype" TEXT,
     "class" TEXT,
     "mass" REAL,
@@ -12,7 +12,7 @@ CREATE TABLE "meteorites_temp" (
 );
 
 CREATE TABLE "meteorites" (
-    "id" INTEGER,
+    "id" INTEGER NOT NULL,
     "name" TEXT,
     "class" TEXT,
     "mass" REAL,
