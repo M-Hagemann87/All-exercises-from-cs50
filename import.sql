@@ -1,53 +1,31 @@
---1
-CREATE TABLE "meteorites"(
+-- 1. Create the final table with the exact schema required by CS50
+CREATE TABLE "meteorites" (
+    "id" INTEGER PRIMARY KEY,
     "name" TEXT,
-    "id" INTEGER NOT NULL,
     "nametype" TEXT,
     "mass" REAL,
     "year" INTEGER,
     "lat" REAL,
-    "long" REAL,
-    PRIMARY KEY ("id")
+    "long" REAL
 );
 
-CREATE TABLE "meteorites_temp"(
+-- 2. Create a temporary table matching your CSV structure
+CREATE TABLE "meteorites_temp" (
     "name" TEXT,
-    "id" INTEGER NOT NULL,
+    "id" INTEGER,
     "nametype" TEXT,
     "class" TEXT,
-    "mass" REAL,
+    "mass" TEXT,
     "discovery" TEXT,
-    "year" INTEGER,
-    "lat" REAL,
-    "long" REAL,
-    PRIMARY KEY ("id")
+    "year" TEXT,
+    "lat" TEXT,
+    "long" TEXT
 );
 
---2
+-- 3. Import the data from meteorites.csv (must be in same folder)
 .import --csv --skip 1 meteorites.csv meteorites_temp
 
---3 (1)
-UPDATE "meteorites_temp" SET "mass" = NULL
-WHERE "mass" = '';
-
-UPDATE "meteorites_temp" SET "year" = NULL
-WHERE "year" = '';
-
-UPDATE "meteorites_temp" SET "lat" = NULL
-WHERE "lat" = '';
-
-UPDATE "meteorites_temp" SET "long" = NULL
-WHERE "long" = '';
---4 (2)
-UPDATE "meteorites_temp" SET "lat" = ROUND("lat",2);
-
-UPDATE "meteorites_temp" SET "long" = ROUND("long",2);
-
-UPDATE "meteorites_temp" SET "mass" = ROUND("mass",2);
---5 (3)
-DELETE FROM "meteorites_temp" WHERE "nametype" = 'Relict';
---6
-
+-- 4. Convert empty strings to NULL using NULLIF
 UPDATE meteorites_temp
 SET
     mass = NULLIF(mass, ''),
@@ -55,9 +33,24 @@ SET
     lat = NULLIF(lat, ''),
     "long" = NULLIF("long", '');
 
----
-INSERT INTO "meteorites" ("id", "name", "nametype", "mass", "year", "lat", "long")
-SELECT "id", "name", "nametype", "mass", "year", "lat", "long" FROM "meteorites_temp"
-ORDER BY "year", "name";
+-- 5. Delete all rows with nametype = 'Relict'
+DELETE FROM meteorites_temp WHERE LOWER(nametype) = 'relict';
 
-DROP TABLE IF EXISTS "meteorites_temp";
+-- 6. Insert cleaned, casted, rounded, and sorted data into final table
+WITH cleaned AS (
+    SELECT
+        ROW_NUMBER() OVER (ORDER BY CAST(year AS INTEGER), name) AS id,
+        name,
+        nametype,
+        ROUND(CAST(mass AS REAL), 2) AS mass,
+        CAST(year AS INTEGER) AS year,
+        ROUND(CAST(lat AS REAL), 2) AS lat,
+        ROUND(CAST("long" AS REAL), 2) AS "long"
+    FROM meteorites_temp
+)
+INSERT INTO meteorites (id, name, nametype, mass, year, lat, "long")
+SELECT id, name, nametype, mass, year, lat, "long" FROM cleaned;
+
+-- 7. Drop the temporary table
+DROP TABLE IF EXISTS meteorites_temp;
+
