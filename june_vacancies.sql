@@ -1,4 +1,4 @@
-CREATE VIEW "june_vacancies"
+CREATE VIEW "june_vacancies" AS
 SELECT "listings"."id", "listings"."property_type", "listings"."host_name",
 COUNT(DISTINCT "availabilities"."date") AS "days_vacant"
 FROM "listings"
