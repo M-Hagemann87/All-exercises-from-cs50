@@ -3,7 +3,7 @@ SELECT * FROM "listings" LIMIT 5;
 CREATE  VIEW "no_descriptions" AS
 SELECT "id", "property_type", "host_name", "accommodates", "bedrooms" FROM "listings";
 ##test:
-SELECT * FROM "no_descriptions" LIMIT 5;
+SELECT COUNT("id") FROM "no_descriptions" LIMIT 5;
 #######2
 CREATE VIEW "one_bedrooms" AS
 SELECT "id", "property_type", "host_name", "accommodates" FROM "listings"
