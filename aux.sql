@@ -37,20 +37,26 @@ GROUP BY "listings"."id"
 ORDER BY "reviews" DESC, "property_type",  "host_name"
 LIMIT 100;
 #########5
-CREATE VIEW "june_vacancies"
+CREATE VIEW "june_vacancies" AS
 SELECT "listings"."id", "listings"."property_type", "listings"."host_name",
 COUNT(DISTINCT "availabilities"."date") AS "days_vacant"
 FROM "listings"
 JOIN "availabilities" ON "availabilities"."listing_id" = "listings"."id"
-GROUP BY "listings"."id"
+WHERE "availabilities"."available" = "TRUE"
+AND "availabilities"."date" LIKE '2023-06%'
+GROUP BY "listings"."id";
+#Test
+SELECT COUNT("id") FROM "june_vacancies";
+
+
+##############
+
+
 BETWEEN date('2023-06-01') AND date('2023-06-30');
 
 WHERE "availabilities"."date" >= '2023-06-01' AND <= '2023-06-30';
 
-
-
 BETWEEN date('2023-06-01') AND date('2023-06-31');
-
 
 -- Rewrite prior query with a range condition
 SELECT "title", "year" FROM "longlist" WHERE "year" >= 2019 AND "year" <= 2022;
