@@ -21,6 +21,12 @@ JOIN "availabilities" ON "availabilities"."listing_id" = "listings"."id";
 ###test
 SELECT COUNT("id") FROM "available"
 WHERE "date" = "2023-12-31";
+
+SELECT COUNT("id") FROM "available"
+WHERE "date" = "2023-12-31"
+AND "property_type" LIKE '%boat%';
+
+
 #########4
 CREATE VIEW "frequently_reviewed" AS
 SELECT "listings"."id", "listings"."property_type", "listings"."host_name", COUNT(DISTINCT "reviews"."comments") AS "reviews"
