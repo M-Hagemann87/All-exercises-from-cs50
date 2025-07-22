@@ -17,7 +17,8 @@ SELECT COUNT("id") FROM "one_bedrooms";
 #######3
 CREATE VIEW "available" AS
 SELECT "listings"."id", "listings"."property_type", "listings"."host_name", "availabilities"."date" FROM "listings"
-JOIN "availabilities" ON "availabilities"."listing_id" = "listings"."id";
+JOIN "availabilities" ON "availabilities"."listing_id" = "listings"."id"
+WHERE "available" = "TRUE";
 ###test
 SELECT COUNT("id") FROM "available"
 WHERE "date" = "2023-12-31";
