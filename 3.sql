@@ -4,6 +4,5 @@ WHERE "from_user_id" IN (
     WHERE "username" = "creativewisdom377"
 )
 GROUP BY "to_user_id"
-ORDER BY "to_user_id" DESC
+ORDER BY COUNT("to_user_id") DESC
 LIMIT 3;
-

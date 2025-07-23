@@ -25,14 +25,43 @@ WHERE "id" = "2500"
 LIMIT 10;
 
 
-SELECT * FROM "users"
-WHERE "username" = "impressivecommitment918"
-LIMIT 1;
+SELECT "username", "id" FROM "users"
+WHERE "username" = 'impressivecommitment918'
+LIMIT 10;
 
 
 
 
 #####3
+
+SELECT "to_user_id" FROM "messages"
+WHERE "from_user_id" IN (
+    SELECT "id" FROM "users"
+    WHERE "username" = "creativewisdom377"
+)
+GROUP BY "from_user_id"
+ORDER BY "from_user_id" DESC
+LIMIT 3;
+
+
+
+SELECT "to_user_id" FROM "messages"
+WHERE "from_user_id" IN (
+    SELECT "id" FROM "users"
+    WHERE "username" = "creativewisdom377"
+)
+ORDER BY "to_user_id" DESC
+LIMIT 300;
+
+SELECT * FROM "messages"
+WHERE "from_user_id" IN (
+    SELECT "id" FROM "users"
+    WHERE "username" = "creativewisdom377"
+)
+GROUP BY "to_user_id"
+ORDER BY COUNT("to_user_id") DESC
+LIMIT 300;
+
 SELECT "users"."id" FROM "users"
 JOIN "messages" ON "messages"."from_user_id" = "users"."id"
 WHERE "from_user_id" = (
