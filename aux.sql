@@ -100,3 +100,41 @@ SELECT "title" FROM "movies" WHERE "id" IN (
         SELECT "id" FROM "people" WHERE "name" = 'Tom Hanks'
     )
 );
+
+
+################# 5
+
+SELECT "username" FROM "users"
+WHERE "id" IN (
+    SELECT COUNT("to_user_id") FROM "messages"
+    GROUP BY "to_user_id"
+    ORDER BY "to_user_id" DESC
+    )
+LIMIT 10;
+
+####
+SELECT "id" FROM "users"
+WHERE "id" IN (
+    SELECT "friend_id" FROM "friends"
+    JOIN "users" ON "users"."id" = "friends"."user_id"
+    WHERE "username" = "lovelytrust487"
+    INTERSECT
+    SELECT "friend_id" FROM "friends"
+    JOIN "users" ON "users"."id" = "friends"."user_id"
+    WHERE "username" = "exceptionalinspiration482"
+)
+
+
+
+SELECT "name" FROM "translators"
+INTERSECT
+SELECT "name" FROM "authors";
+
+
+
+
+
+
+SELECT "id" FROM "users"
+
+WHERE "friend" = 'lovelytrust487' AND 'exceptionalinspiration482';

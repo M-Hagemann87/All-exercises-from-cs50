@@ -1,3 +1,11 @@
 SELECT "id" FROM "users"
-
-WHERE "friend" = 'lovelytrust487' AND 'exceptionalinspiration482';
+WHERE "id" IN (
+    SELECT "friend_id" FROM "friends"
+    JOIN "users" ON "users"."id" = "friends"."user_id"
+    WHERE "username" = "lovelytrust487"
+    INTERSECT
+    SELECT "friend_id" FROM "friends"
+    JOIN "users" ON "users"."id" = "friends"."user_id"
+    WHERE "username" = "exceptionalinspiration482"
+)
+;
