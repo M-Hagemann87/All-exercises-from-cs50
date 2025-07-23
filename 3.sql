@@ -1,7 +1,6 @@
-SELECT "id" FROM "messages"
-WHERE "from_user_id" =
-    (SELECT "id" FROM "users"
-        WHERE "username" = 'creativewisdom377')
-GROUP BY "to_user_id"
-ORDER BY "from_user_id" DESC
+SELECT "to_user_id" FROM "messages"
+WHERE "from_user_id" IN (
+    SELECT "id" FROM "users"
+    WHERE "username" = "creativewisdom377"
+)
 LIMIT 3;
