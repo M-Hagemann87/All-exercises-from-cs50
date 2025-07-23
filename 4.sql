@@ -4,4 +4,4 @@ WHERE "id" IN (
     GROUP BY "to_user_id"
     ORDER BY COUNT("to_user_id") DESC
     )
-LIMIT 10;
+LIMIT 1;
