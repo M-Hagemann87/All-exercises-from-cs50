@@ -1,8 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void print_row(int bricks);
-
 int main(void)
 {
     // Prompt the user for the pyramid's height
@@ -17,20 +15,15 @@ int main(void)
     for (int i = 0; i < n; i++)
     {
         // Print row of bricks
-        print_row(i + 1);
-    }
-}
 
-void print_row(int bricks)
-{
-    int cal = 9 - bricks;
-    for (int j = cal; j > 0; j--)
-    {
-        printf(" ");
+        for (int j = i + 1; j < n; j++)
+        {
+            printf(" ");
+        }
+        for (int k = 0; k < i + 1; k++)
+        {
+            printf("#");
+        }
+        printf("\n");
     }
-    for (int i = 0; i < bricks; i++)
-    {
-        printf("#");
-    }
-    printf("\n");
 }
