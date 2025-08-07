@@ -20,8 +20,8 @@ int main(void)
     float words = count_words(text);
     float sentences = count_sentences(text);
 
-    float L = (letters / words)*100;
-    float S = (sentences / words)*100;
+    float L = (letters / words) * 100;
+    float S = (sentences / words) * 100;
 
     // Compute the Coleman-Liau index
     float score = (0.0588 * L - 0.296 * S - 15.8);
@@ -33,7 +33,7 @@ int main(void)
     }
     else if (1.0 <= score && score < 16.0)
     {
-        //round
+        // round
         printf("Grade %d\n", (int) round(score));
     }
     else
@@ -70,8 +70,6 @@ int count_letters(string text)
     return length - count;
 }
 
-
-
 int count_words(string text)
 {
     // Return the number of words in text
@@ -82,7 +80,6 @@ int count_words(string text)
         if (text[i] == ' ')
             count++;
     return count + 1;
-
 }
 
 int count_sentences(string text)
@@ -98,6 +95,4 @@ int count_sentences(string text)
         else if (text[i] == '.')
             count++;
     return count;
-
 }
-
