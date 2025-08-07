@@ -63,6 +63,10 @@ int count_letters(string text)
             count++;
         else if (text[i] == '!')
             count++;
+        else if (text[i] == '\'')
+            count++;
+        else if (text[i] == '\"')
+            count++;
     return length - count;
 }
 
