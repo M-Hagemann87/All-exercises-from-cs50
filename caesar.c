@@ -47,7 +47,15 @@ int main(int argc, string argv[])
                  text[i] != ':' && text[i] != '\"' && text[i] != '\'' && text[i] != ' '
                 && text[i] != '!')
                 {
-                char ABab = isupper(new_text) ? 'A' : 'a';
+                char ABab;
+                    if (isupper(new_text))
+                    {
+                        ABab = 'A';
+                    }
+                    else
+                    {
+                        ABab = 'a';
+                    }
                 char cal = new_text - ABab;
                 char rotated = (cal + new_number) % 26;
                 char rotated1 = rotated + ABab;
