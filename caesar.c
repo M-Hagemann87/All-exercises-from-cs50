@@ -1,4 +1,4 @@
-// Program to find the grade of a specific text;
+// Program to encrypt some prompt text;
 
 #include <ctype.h> // is digit --> yes need to use it
 #include <cs50.h> //  get_string, etc..
@@ -42,8 +42,6 @@ int main(int argc, string argv[])
     for (int i = 0; text[i] != '\0'; i++)
     {
         char new_text = text[i];
-
-        if (isalpha(new_text))
         {
             char ABab = isupper(new_text) ? 'A' : 'a';
             char cal = new_text - ABab;
@@ -51,10 +49,7 @@ int main(int argc, string argv[])
             char rotated1 = rotated + ABab;
             printf("%c", rotated1);
         }
-        else
-        {
-            printf("%c", new_text);
-        }
+
     }
 
     printf("\n");
