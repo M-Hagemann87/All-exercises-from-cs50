@@ -46,7 +46,9 @@ int main(int argc, string argv[])
         if (isalpha(new_text))
         {
             char ABab = isupper(new_text) ? 'A' : 'a';
-            char rotated = (new_text - ABab + new_number) % 26 + ABab;
+            char cal = new_text - ABab
+            char rotated = (cal + new_number) % 26;
+            char rotated = rotated + ABab
             printf("%c", rotated);
         }
         else
