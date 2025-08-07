@@ -43,11 +43,19 @@ int main(int argc, string argv[])
     {
         char new_text = text[i];
         {
-            char ABab = isupper(new_text) ? 'A' : 'a';
-            char cal = new_text - ABab;
-            char rotated = (cal + new_number) % 26;
-            char rotated1 = rotated + ABab;
-            printf("%c", rotated1);
+            if (text[i] != '.' && text[i] != ',' && text[i] != '?' && text[i] != ';' &&
+                 text[i] != ':' && text[i] != '\"' && text[i] != '\'' && text[i] != ' ')
+                {
+                char ABab = isupper(new_text) ? 'A' : 'a';
+                char cal = new_text - ABab;
+                char rotated = (cal + new_number) % 26;
+                char rotated1 = rotated + ABab;
+                printf("%c", rotated1);
+                }
+            else
+            {
+                printf("%c", new_text);
+            }
         }
 
     }
