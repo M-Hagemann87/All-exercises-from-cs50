@@ -44,7 +44,8 @@ int main(int argc, string argv[])
         char new_text = text[i];
         {
             if (text[i] != '.' && text[i] != ',' && text[i] != '?' && text[i] != ';' &&
-                 text[i] != ':' && text[i] != '\"' && text[i] != '\'' && text[i] != ' ')
+                 text[i] != ':' && text[i] != '\"' && text[i] != '\'' && text[i] != ' '
+                && text[i] != '!')
                 {
                 char ABab = isupper(new_text) ? 'A' : 'a';
                 char cal = new_text - ABab;
