@@ -89,6 +89,6 @@ string winner;
                 winner = candidates[i].name;
                 }
         }
-    printf("Name winer: %s\n", winner);
+    printf("%s\n",winner);
     return;
 }
