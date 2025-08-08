@@ -94,6 +94,6 @@ int max_vote = 0;
                 printf("%s\n", candidates[i].name);
             }
         }
-
+        
     return;
 }
