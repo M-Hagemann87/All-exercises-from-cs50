@@ -142,20 +142,22 @@ bool vote(int voter, int rank, string name)
 
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
-{
-    for (int i = 0; i < voter_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
+{    // TODO
+   /// if (eliminate != 0)??
+
+        for (int i = 0; i < voter_count; i++)
         {
-            int candidate_index = preferences[i][j];
-            if (!candidates[candidate_index].eliminated)
+            // Query for each rank
+            for (int j = 0; j < candidate_count; j++)
             {
-                candidates[candidate_index].votes++;
-                break; // Move to next voter after counting vote
+                if (candidates[preferences[i][j]].eliminated == false)
+                {
+                    candidates[preferences[i][j]].votes += 1;
+                    break;
+                }
             }
-        }
-    }
 }
+
 
 // Print the winner of the election, if there is one
 bool print_winner(void)
@@ -184,6 +186,8 @@ bool print_winner(void)
 
     return false;
 }
+
+
 
 // Return the minimum number of votes any remaining candidate has
 int find_min(void) /// stoped here!!
