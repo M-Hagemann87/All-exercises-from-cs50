@@ -81,13 +81,11 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE tempR = image[i][position_R];
             image[i][j] = tempR;
             image[i][position_R] = tempL;
-
+        }
             if (j > width/2)
             {
                 break;
             }
-
-        }
     }
 }
 
