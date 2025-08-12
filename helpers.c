@@ -167,7 +167,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                         }
 
                     c6 = (RGBTRIPLE){0, 0, 0};
-                    count = count - 1;
+                    count = count - 1.0;
 
 
                     if ((!(c9.rgbtRed == 0 && c9.rgbtGreen == 0 && c9.rgbtBlue == 0)))
