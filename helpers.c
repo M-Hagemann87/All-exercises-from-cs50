@@ -127,19 +127,19 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 {
 
                 int average_Red;
-                average_Red = (round(c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
+                average_Red = ((int) round(c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
                             c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
-                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9);
+                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9.0);
 
                 int average_Green;
-                average_Green = (round(c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
+                average_Green = ((int) round(c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
                                 c4.rgbtGreen + c5.rgbtGreen + c6.rgbtGreen +
-                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9);
+                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9.0);
 
                 int average_Blue;
-                average_Blue = (round(c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
+                average_Blue = ((int) round(c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
                                 c4.rgbtBlue + c5.rgbtBlue + c6.rgbtBlue +
-                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9);
+                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9.0);
 
             //  int average_color;
             //  average_color =  ((int) round(average_Blue + average_Green + average_Red)/ 3.0);
