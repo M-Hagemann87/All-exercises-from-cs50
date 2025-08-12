@@ -94,7 +94,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Create a copy of image
+    // Create a copy of image ==> TO check 12-08-25
     RGBTRIPLE copy[height][width];
     for (int i = 0; i < height; i++)
     {
@@ -120,26 +120,79 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE c8 = copy[i+1][j];
             RGBTRIPLE c9 = copy[i+1][j+1];
 
-            int count;
+            float count;
             if (i > 0 && i < height -1)
             {
                 if (j > 0 && j < width -1)
                 {
+                count = 9.0;
+                if (i == 0)
+                    {
+                    c1 = (RGBTRIPLE){0, 0, 0};
+                    c2 = (RGBTRIPLE){0, 0, 0};
+                    c3 = (RGBTRIPLE){0, 0, 0};
+                    count = count - 3.0;
+                    }
+                if (i == height)
+                    {
+                    c7 = (RGBTRIPLE){0, 0, 0};
+                    c8 = (RGBTRIPLE){0, 0, 0};
+                    c9 = (RGBTRIPLE){0, 0, 0};
+                    count = count - 3.0;
+                    }
+
+                if (j == 0)
+                    {
+                    if ((!(c1.rgbtRed == 0 && c1.rgbtGreen == 0 && c1.rgbtBlue == 0)))
+                        {
+                        c1 = (RGBTRIPLE){0, 0, 0};
+                        count = count - 1.0;
+                        }
+                    c4 = (RGBTRIPLE){0, 0, 0};
+                    count = count - 1.0;
+
+                    if ((!(c7.rgbtRed == 0 && c7.rgbtGreen == 0 && c7.rgbtBlue == 0)))
+                        {
+                        c7 = (RGBTRIPLE){0, 0, 0};
+                        count = count - 1.0;
+                        }
+                    }
+
+                if (j == width)
+                    {
+                    if ((!(c3.rgbtRed == 0 && c3.rgbtGreen == 0 && c3.rgbtBlue == 0)))
+                        {
+                        c3 = (RGBTRIPLE){0, 0, 0};
+                        count = count - 1.0;
+                        }
+
+                    c6 = (RGBTRIPLE){0, 0, 0};
+                    count = count - 1;
+
+
+                    if ((!(c9.rgbtRed == 0 && c9.rgbtGreen == 0 && c9.rgbtBlue == 0)))
+                        {
+                        c9 = (RGBTRIPLE){0, 0, 0};
+                        count = count - 1.0;
+                        }
+                    }
+
+
 
                 int average_Red;
                 average_Red = round((float)(c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
                             c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
-                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9.0);
+                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/count);
 
                 int average_Green;
                 average_Green = round((float)(c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
                                 c4.rgbtGreen + c5.rgbtGreen + c6.rgbtGreen +
-                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9.0);
+                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/count);
 
                 int average_Blue;
                 average_Blue = round((float)(c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
                                 c4.rgbtBlue + c5.rgbtBlue + c6.rgbtBlue +
-                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9.0);
+                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/count);
 
             //  int average_color;
             //  average_color =  ((int) round(average_Blue + average_Green + average_Red)/ 3.0);
