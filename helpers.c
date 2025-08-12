@@ -94,60 +94,50 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Create a copy of image
     RGBTRIPLE copy[height][width];
+
+    // Copy original image
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
             copy[i][j] = image[i][j];
+        }
+    }
 
-            RGBTRIPLE c1 = copy[i-1][j-1];
-            RGBTRIPLE c2 = copy[i][j];
-            RGBTRIPLE c3 = copy[i-1][j+1];
+    // Apply blur
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int totalRed = 0, totalGreen = 0, totalBlue = 0;
+            int count = 0;
 
-            RGBTRIPLE c4 = copy[i][j-1];
-            RGBTRIPLE c5 = copy[i][j];
-            RGBTRIPLE c6 = copy[i][j+1];
-
-            RGBTRIPLE c7 = copy[i+1][j-1];
-            RGBTRIPLE c8 = copy[i][j];
-            RGBTRIPLE c9 = copy[i+1][j+1];
-
-
-            if (i > 2 || i < height -2)
+            // Loop over 3x3 box
+            for (int di = -1; di <= 1; di++)
             {
-                if (j > 2 || j < width -2)
+                for (int dj = -1; dj <= 1; dj++)
                 {
+                    int ni = i + di;
+                    int nj = j + dj;
 
-                int average_Red;
-                average_Red = ((c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
-                            c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
-                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9);
-
-                int average_Green;
-                average_Green = ((c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
-                                c4.rgbtGreen + c5.rgbtGreen + c6.rgbtGreen +
-                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9);
-
-                int average_Blue;
-                average_Blue = ((c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
-                                c4.rgbtBlue + c5.rgbtBlue + c6.rgbtBlue +
-                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9);
-
-            //  int average_color;
-            //  average_color =  ((int) round(average_Blue + average_Green + average_Red)/ 3.0);
-
-                image[i][j].rgbtRed = average_Red;
-                image[i][j].rgbtGreen = average_Green;
-                image[i][j].rgbtBlue = average_Blue;
-
+                    // Check bounds
+                    if (ni >= 0 && ni < height && nj >= 0 && nj < width)
+                    {
+                        totalRed += copy[ni][nj].rgbtRed;
+                        totalGreen += copy[ni][nj].rgbtGreen;
+                        totalBlue += copy[ni][nj].rgbtBlue;
+                        count++;
+                    }
                 }
             }
+
+            image[i][j].rgbtRed = round((float)totalRed / count);
+            image[i][j].rgbtGreen = round((float)totalGreen / count);
+            image[i][j].rgbtBlue = round((float)totalBlue / count);
         }
     }
 }
-
 
 
 
