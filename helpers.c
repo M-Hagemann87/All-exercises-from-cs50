@@ -117,21 +117,20 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
       //      int count = 0;
 
-            if (i - 1 >= 0 && j - 1 >= 0)
+            int count = 0; // number of valid neighbors
 
-            {
-                c1 = copy[i - 1][j - 1];
-            }
+            // Fill each cell only if inside bounds
+            if (i - 1 >= 0 && j - 1 >= 0) { c1 = copy[i - 1][j - 1]; count++; }
+            if (i - 1 >= 0)               { c2 = copy[i - 1][j];     count++; }
+            if (i - 1 >= 0 && j + 1 < width) { c3 = copy[i - 1][j + 1]; count++; }
 
-            if (i - 1 >= 0)
-            {
-                c2 = copy[i - 1][j];
-            }
+            if (j - 1 >= 0)               { c4 = copy[i][j - 1];     count++; }
+            c5 = copy[i][j]; count++; // center pixel always valid
+            if (j + 1 < width)            { c6 = copy[i][j + 1];     count++; }
 
-            if (i - 1 >= 0 && j + 1 < width)
-            {
-                c3 = copy[i - 1][j + 1];
-            }
+            if (i + 1 < height && j - 1 >= 0) { c7 = copy[i + 1][j - 1]; count++; }
+            if (i + 1 < height)               { c8 = copy[i + 1][j];     count++; }
+            if (i + 1 < height && j + 1 < width) { c9 = copy[i + 1][j + 1]; count++; }
 
 
                int average_Red;
