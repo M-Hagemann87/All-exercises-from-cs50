@@ -82,7 +82,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j] = tempR;
             image[i][position_R] = tempL;
 
-            if (j == position_R || j == position_R + 1 || j == position_R - 1)
+            if (j == position_R || j == position_R + 1)
             {
                 break;
             }
