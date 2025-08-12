@@ -114,30 +114,47 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE c8 = image[i][j];
             RGBTRIPLE c9 = image[i+1][j+1];
 
-            int average_Red;
-            average_Red = ((c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
-                           c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
-                           c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9);
 
-            int average_Green;
-            average_Green = ((c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
-                             c4.rgbtGreen + c5.rgbtGreen + c6.rgbtGreen +
-                             c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9);
+      //      int count = 0;
 
-            int average_Blue;
-            average_Blue = ((c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
-                             c4.rgbtBlue + c5.rgbtBlue + c6.rgbtBlue +
-                             c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9);
+            if (i - 1 >= 0 && j - 1 >= 0)
+
+            {
+                c1 = copy[i - 1][j - 1];
+            }
+
+            if (i - 1 >= 0)
+            {
+                c2 = copy[i - 1][j];
+            }
+
+            if (i - 1 >= 0 && j + 1 < width)
+            {
+                c3 = copy[i - 1][j + 1];
+            }
 
 
+               int average_Red;
+                average_Red = ((c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
+                            c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
+                            c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9);
 
-        //  int average_color;
-        //  average_color =  ((int) round(average_Blue + average_Green + average_Red)/ 3.0);
+                int average_Green;
+                average_Green = ((c1.rgbtGreen + c2.rgbtGreen + c3.rgbtGreen +
+                                c4.rgbtGreen + c5.rgbtGreen + c6.rgbtGreen +
+                                c7.rgbtGreen + c8.rgbtGreen + c9.rgbtGreen)/9);
 
+                int average_Blue;
+                average_Blue = ((c1.rgbtBlue + c2.rgbtBlue + c3.rgbtBlue +
+                                c4.rgbtBlue + c5.rgbtBlue + c6.rgbtBlue +
+                                c7.rgbtBlue + c8.rgbtBlue + c9.rgbtBlue)/9);
 
-            image[i][j].rgbtRed = average_Red;
-            image[i][j].rgbtGreen = average_Green;
-            image[i][j].rgbtBlue = average_Blue;
+            //  int average_color;
+            //  average_color =  ((int) round(average_Blue + average_Green + average_Red)/ 3.0);
+
+                image[i][j].rgbtRed = average_Red;
+                image[i][j].rgbtGreen = average_Green;
+                image[i][j].rgbtBlue = average_Blue;
 
         }
     }
