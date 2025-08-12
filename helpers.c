@@ -115,25 +115,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE c9 = image[i+1][j+1];
 
 
-      //      int count = 0;
+            if (i > 2 || i < height -2)
+            {
+                if (j > 2 || j < width -2)
+                {
 
-            int count = 0; // number of valid neighbors
-
-            // Fill each cell only if inside bounds
-            if (i - 1 >= 0 && j - 1 >= 0) { c1 = copy[i - 1][j - 1]; count++; }
-            if (i - 1 >= 0)               { c2 = copy[i - 1][j];     count++; }
-            if (i - 1 >= 0 && j + 1 < width) { c3 = copy[i - 1][j + 1]; count++; }
-
-            if (j - 1 >= 0)               { c4 = copy[i][j - 1];     count++; }
-            c5 = copy[i][j]; count++; // center pixel always valid
-            if (j + 1 < width)            { c6 = copy[i][j + 1];     count++; }
-
-            if (i + 1 < height && j - 1 >= 0) { c7 = copy[i + 1][j - 1]; count++; }
-            if (i + 1 < height)               { c8 = copy[i + 1][j];     count++; }
-            if (i + 1 < height && j + 1 < width) { c9 = copy[i + 1][j + 1]; count++; }
-
-
-               int average_Red;
+                int average_Red;
                 average_Red = ((c1.rgbtRed + c2.rgbtRed + c3.rgbtRed +
                             c4.rgbtRed + c5.rgbtRed + c6.rgbtRed +
                             c7.rgbtRed + c8.rgbtRed + c9.rgbtRed)/9);
@@ -155,6 +142,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image[i][j].rgbtGreen = average_Green;
                 image[i][j].rgbtBlue = average_Blue;
 
+                }
+            }
         }
     }
 }
