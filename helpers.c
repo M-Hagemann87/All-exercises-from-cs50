@@ -133,7 +133,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     c3 = (RGBTRIPLE){0, 0, 0};
                     count = count - 3.0;
                     }
-                if (i == height)
+                if (i == height -1)
                     {
                     c7 = (RGBTRIPLE){0, 0, 0};
                     c8 = (RGBTRIPLE){0, 0, 0};
@@ -158,7 +158,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                         }
                     }
 
-                if (j == width)
+                if (j == width -1)
                     {
                     if ((!(c3.rgbtRed == 0 && c3.rgbtGreen == 0 && c3.rgbtBlue == 0)))
                         {
