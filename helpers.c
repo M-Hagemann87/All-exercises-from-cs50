@@ -121,9 +121,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             RGBTRIPLE c9 = copy[i+1][j+1];
 
             int count;
-            if (i > 2 && i < height -2)
+            if (i > 1 && i < height -1)
             {
-                if (j > 2 && j < width -2)
+                if (j > 1 && j < width -1)
                 {
 
                 int average_Red;
