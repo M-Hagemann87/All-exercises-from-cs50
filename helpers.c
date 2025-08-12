@@ -76,8 +76,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             int position_R = width - j - 1;
-            
-            if (j > position_R + 1)
+
+            if (j > position_R)
             {
                 break;
             }
