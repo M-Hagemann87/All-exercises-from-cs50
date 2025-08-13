@@ -14,9 +14,8 @@ int main(int argc, char *argv[])
     }
 
     // Open files and determine scaling factor
-    char *outfile;
 
-    FILE *card = fopen(argv[2], "r");
+    FILE *card = fopen(argv[1], "r");
     if (card == NULL)
     {
         printf("Could not open file.\n");
@@ -59,14 +58,16 @@ int main(int argc, char *argv[])
                             fwrite(buffer, 1, 512, img);
                         }
 
-                            }
-
                     }
+
+                }
+                if (img != NULL)
+                    fclose(img);
 
     }
 
     // Close files
-    fclose(img);
     fclose(card);
+    return 0;
 
 }
