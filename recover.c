@@ -24,9 +24,7 @@ int main(int argc, char *argv[])
 
     uint8_t buffer[512];
     // Create a buffer for a block of data
-    fread(buffer, 512, 1, card);
-
-    FILE *img = NULL;
+      FILE *img = NULL;
     char image_rec[8];
     int count = 0;
     int found = 0;
