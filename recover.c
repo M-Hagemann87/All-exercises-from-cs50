@@ -1,7 +1,7 @@
 #include <cs50.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 int main(int argc, char *argv[])
 {
@@ -21,9 +21,8 @@ int main(int argc, char *argv[])
         printf("Could not open file.\n");
         return 1;
     }
-
-    uint8_t buffer[512];
     // Create a buffer for a block of data
+    uint8_t buffer[512];
     FILE *img = NULL;
     char image_rec[8];
     int count = 0;
@@ -33,36 +32,34 @@ int main(int argc, char *argv[])
     while (fread(buffer, 1, 512, card) == 512)
     {
         // Create JPEGs from the data
-
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)
+        {
+            if ((buffer[3] & 0xf0) == 0xe0)
             {
-                if ((buffer[3] & 0xf0) == 0xe0)
+
+                if (found == 1)
                 {
-
-                    if (found)
-                    {
-                        fclose(img);
-                    }
-                    else
-                    {
-                        found = 1;
-                    }
-
-                    sprintf(image_rec, "%03i.jpg", count++);
-                    img = fopen((image_rec), "w");
+                    fclose(img);
                 }
+                else
+                {
+                    found = 1;
+                }
+
+                sprintf(image_rec, "%03i.jpg", count++);
+                img = fopen((image_rec), "w");
             }
+        }
         if (found)
         {
             fwrite(buffer, 1, 512, img);
         }
     }
-     // Close files
+    // Close files
     if (img != NULL)
     {
         fclose(img);
     }
     fclose(card);
     return 0;
-
 }
