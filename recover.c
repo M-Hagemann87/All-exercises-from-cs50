@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
                 img = fopen((image_rec), "w");
             }
         }
-        if (found)
+        if (found == 1)
         {
             fwrite(buffer, 1, 512, img);
         }
