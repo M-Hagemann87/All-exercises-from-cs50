@@ -39,34 +39,35 @@ int main(int argc, char *argv[])
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)
             {
                 if ((buffer[3] & 0xf0) == 0xe0)
+                {
+
+                    if (found)
                     {
+                        fclose(img);
+                    }
+                    else
+                    {
+                        found = 1;
+                    }
 
-                        if (found)
-                        {
-                            fclose(img);
-                        }
-                        else
-                        {
-                            found = 1;
-                        }
+                    sprintf(image_rec, "%03i.jpg", count++);
+                    img = fopen((image_rec), "w");
 
-                        sprintf(image_rec, "%03i.jpg", count++);
-                        img = fopen((image_rec), "w");
-
-                        if (found)
-                        {
-                            fwrite(buffer, 1, 512, img);
-                        }
-
+                    if (found)
+                    {
+                        fwrite(buffer, 1, 512, img);
                     }
 
                 }
-                if (img != NULL)
-                    fclose(img);
+
+            }
 
     }
-
-    // Close files
+     // Close files
+    if (img != NULL)
+    {
+        fclose(img);
+    }
     fclose(card);
     return 0;
 
