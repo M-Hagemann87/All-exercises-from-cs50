@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
     uint8_t buffer[512];
     // Create a buffer for a block of data
-      FILE *img = NULL;
+    FILE *img = NULL;
     char image_rec[8];
     int count = 0;
     int found = 0;
@@ -50,16 +50,12 @@ int main(int argc, char *argv[])
 
                     sprintf(image_rec, "%03i.jpg", count++);
                     img = fopen((image_rec), "w");
-
-                    if (found)
-                    {
-                        fwrite(buffer, 1, 512, img);
-                    }
-
                 }
-
             }
-
+        if (found)
+        {
+            fwrite(buffer, 1, 512, img);
+        }
     }
      // Close files
     if (img != NULL)
