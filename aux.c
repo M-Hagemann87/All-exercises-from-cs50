@@ -2,7 +2,8 @@
 
 #include <ctype.h>
 #include <stdbool.h>
-#include <strings.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include "dictionary.h"
 
@@ -51,6 +52,7 @@ bool load(const char *dictionary)
 {
     // TODO
     // Open the dictionary file
+
     char word[LENGTH + 1];
     FILE *source = fopen(dictionary, "r");
 
