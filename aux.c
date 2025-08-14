@@ -87,17 +87,22 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-
-
-    for (int i =0; i < word; i++)
+    // TODO
+    for (int i =0; i < N; i++)
         {
-        count++
+            node *cursor = table[i];
+            if (cursor == NULL)
+            {
+                break;
+            }
+            else
+            {
+                count++
+                cursor = cursor->next;
+            }
         }
     return count;
 
-
-    // TODO
-    return 0;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
