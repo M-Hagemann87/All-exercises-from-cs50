@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <strings.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -43,9 +44,12 @@ unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
     // a = 0, b = 1, c = 3, z = 25
+        unsigned char c = (unsigned char) word[0];
+        if (isalpha(c))
         {
-            return toupper(word[0]) - 'A';
+            return (unisigned int)(toupper(word[0]) - 'A');
         }
+        return 0;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
