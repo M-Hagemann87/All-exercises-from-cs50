@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "dictionary.h"
 
@@ -18,7 +19,7 @@ typedef struct node
 const unsigned int N = 26;
 
 // Hash table
-node *table[N];
+node *table[N] = NULL;
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
@@ -63,7 +64,7 @@ bool load(const char *dictionary)
 
     // Read each word in the file
 
-    for (int i = 0 ;fscanf(source, "%s" , word) != EOF; i++ )
+    while (fscanf(source, "%s", word) != EOF)
         {
         node *n = malloc(sizeof(node));
         // close if null or in the end of the file
@@ -90,21 +91,17 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    int count;
+    int count = 0;
     for (int i =0; i < N; i++)
         {
             node *cursor = table[i];
-            if (cursor == NULL)
-            {
-                break;
-            }
-            else
+            while (cursor != NULL)
             {
                 count++;
                 cursor = cursor->next;
             }
         }
-    return count;
+        return count;
 
 }
 
@@ -112,13 +109,15 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-    node *tmp = table[];
-    while (tmp != NULL)
+    for (int i = 0; i < N; i++)
     {
-        node *next = tmp->next;
-        free(tmp);
-        tmp = next;
+        node *cursor = table[i];
+        while (cursor != NULL)
+        {
+            node *tmp = cursor;
+            cursor = cursor->next;
+            free(tmp);
+        }
     }
-
-
+    return true;
 }
