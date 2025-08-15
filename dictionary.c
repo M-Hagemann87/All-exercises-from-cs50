@@ -44,10 +44,11 @@ unsigned int hash(const char *word)
 {
     // TODO: Improve this hash function
     // a = 0, b = 1, c = 3, z = 25
+
         unsigned char c = (unsigned char) word[0];
         if (isalpha(c))
         {
-            return (unsigned int)(toupper(word[0]) - 'A');
+            return (toupper(word[0]) - 'A');
         }
         return 0;
 }
