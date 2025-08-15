@@ -90,6 +90,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
+    int count;
     for (int i =0; i < N; i++)
         {
             node *cursor = table[i];
@@ -99,7 +100,7 @@ unsigned int size(void)
             }
             else
             {
-                count++
+                count++;
                 cursor = cursor->next;
             }
         }
@@ -111,7 +112,7 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
-    node *tmp = list;
+    node *tmp = table[];
     while (tmp != NULL)
     {
         node *next = tmp->next;
