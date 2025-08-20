@@ -8,18 +8,22 @@ except ValueError:
 n_card = str(n_card)
 n_len = len(n_card)
 
+list = []
+for i in range(n_len):
+    list.append(n_card[i])
+list.reverse()
+
 sum = 0
 
 for i in range(n_len):
-    if i % 2 == 0:
+    if i % 2 == 1:
         even = str()
-        even = n_card[i]
+        even = list[i]
         even = int(even)
         even = even * 2
         even = str(even)
         even_len = len(even)
         even_len = str(even_len)
-       ## print(even_len)
 
         if even_len == "1":
             even = int(even)
@@ -33,12 +37,11 @@ for i in range(n_len):
             even_n2 = int(even_n2)
             sum = even_n1 + even_n2 + sum
 
-    elif i % 2 == 1:
+    elif i % 2 == 0:
         odd = str()
-        odd = n_card[i]
+        odd = list[i]
         odd = int(odd)
         sum = odd + sum
-       ## print(odd)
 
 ##print(sum)
 
@@ -47,7 +50,6 @@ sum = str(sum)
 if sum[1] != "0":
    print("INVALID")
    exit(0)
-
 
 ## 16 digits // starts 4
 if (n_len == 13 or n_len == 16) and n_card[0] == "4":
