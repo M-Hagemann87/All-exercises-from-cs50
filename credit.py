@@ -49,18 +49,22 @@ if sum[1] != "0":
 
 
 ## 16 digits // starts 4
-if (n_len == 13 or n_len == 16) and n_card[0] == "4":
+if (n_len == 13 or n_len == 16):
+    ## and n_card[0] == "4":
     print("VISA")
     exit(0)
 
 ## 13 and 15 digits // starts 51, 52, 53, 54, or 55
-if n_len == 16:
-    if n_card[0] == "5" and (n_card[1] == "1" or n_card[1] == "2" or n_card[1] == "3" or n_card[1] == "4" or n_card[1] == "5"):
+elif n_len == 16:
+    ##if n_card[0] == "5" and (n_card[1] == "1" or n_card[1] == "2" or n_card[1] == "3" or n_card[1] == "4" or n_card[1] == "5"):
         print("MASTERCARD")
         exit(0)
 
 ## 15 digits // starts 34 or 37
-if n_len == 15:
-    if n_card[0] == "3" and n_card[1] == "4" or n_card[1] == "7":
+elif n_len == 15:
+    ##if n_card[0] == "3" and n_card[1] == "4" or n_card[1] == "7":
         print("AMEX")
         exit(0)
+
+else:
+    print("INVALID")
