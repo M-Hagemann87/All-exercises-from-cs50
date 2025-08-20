@@ -66,7 +66,5 @@ elif n_len == 15 and (n_card[0] == "3" and (n_card[1] == "4" or n_card[1] == "7"
         print("AMEX")
         exit(0)
 
-
-
 else:
     print("INVALID")
