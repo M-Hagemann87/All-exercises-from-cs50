@@ -51,3 +51,13 @@ else:
     print("Integer.")
 #########
 if re.match(r"[A-Za-z]", c) or (c == "'" and index > 0):
+
+
+
+# Prompt user for an integer
+try:
+    n = int(input("Input: "))
+except ValueError:
+    print("Not integer.")
+else:
+    print("Integer.")
