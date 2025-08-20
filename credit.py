@@ -38,6 +38,7 @@ for i in range(n_len):
         odd = n_card[i]
         odd = int(odd)
         sum = odd + sum
+       ## print(odd)
 
 ##print(sum)
 
@@ -61,7 +62,7 @@ elif n_len == 16:
 
 ## 15 digits // starts 34 or 37
 elif n_len == 15:
-    if n_card[0] == "3" and n_card[1] == "4" or n_card[1] == "7":
+    if n_card[0] == "3" and (n_card[1] == "4" or n_card[1] == "7"):
         print("AMEX")
         exit(0)
 
