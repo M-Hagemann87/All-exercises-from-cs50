@@ -3,7 +3,7 @@
 try:
     text = str(input("Text: "))
 except ValueError:
-    result = 0
+    exit(1)
 
 len_text = len(text)
 words = 1
