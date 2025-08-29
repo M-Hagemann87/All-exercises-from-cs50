@@ -1,0 +1,7 @@
+1 - Calculate the average of energy, danceability, and valence.
+And ordering (ORDER BY) the highest to the lowest average.
+For example, if AVG(energy) is 0.8 and AVG(valence) is 0.6, energy would come first.
+
+2 - 2 - The speechiness is also an important factor; there are people that prefer music with lots of
+singing / spoken words, and others that prefer more instrumental music.
+
