@@ -1,0 +1,4 @@
+--SELECT * FROM songs;
+SELECT name FROM songs
+WHERE energy > 0.75
+AND valence > 0.75;
