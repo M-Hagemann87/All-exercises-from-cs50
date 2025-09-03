@@ -24,7 +24,11 @@ SELECT * FROM bakery_security_logs
 WHERE year = 2024
 AND month = 7
 AND day = 28
+AND hour = 10
+AND minute < 30
 LIMIT 100;
+| 266 | 2024 | 7     | 28  | 10   | 23     | exit     | 322W7JE       | Diana
+| 261 | 2024 | 7     | 28  | 10   | 18     | exit     | 94KL13X       | Bruce
 
 ----- License_plate to check (E= entrance, EX = Exit):
 -- 10:08 E= R3G7486 ///  10:14 E= 13FNH73   /// 10:16 EX= 5P2BI95 /// 10:18 EX= 94KL13X /// 10:18 EX= 6P58WS2
@@ -213,7 +217,7 @@ WHERE license_plate IN (
     AND month = 7
     AND day = 28
     AND hour = 10
-    AND minute > 15
+    AND minute < 30
     AND activity = 'exit'
     )
 AND phone_number IN (
@@ -242,14 +246,12 @@ AND people.id IN (
     AND atm_location = 'Leggett Street')
     )
 ;
-
-+--------+--------+----------------+-----------------+---------------+
-|   id   |  name  |  phone_number  | passport_number | license_plate | seats
-+--------+--------+----------------+-----------------+---------------+
-| 449774 | Taylor | (286) 555-6063 | 1988161715      | 1106N58       | 6D
-| 514354 | Diana  | (770) 555-1861 | 3592750733      | 322W7JE       | 4C
-| 686048 | Bruce  | (367) 555-5533 | 5773159633      | 94KL13X       | 4A
-+--------+--------+----------------+-----------------+---------------+
++--------+-------+----------------+-----------------+---------------+
+|   id   | name  |  phone_number  | passport_number | license_plate |
++--------+-------+----------------+-----------------+---------------+
+| 514354 | Diana | (770) 555-1861 | 3592750733      | 322W7JE       |
+| 686048 | Bruce | (367) 555-5533 | 5773159633      | 94KL13X       |
++--------+-------+----------------+-----------------+---------------+
 
 --- Check again cars leaving:
 
@@ -288,10 +290,18 @@ WHERE airports.id IN (
     WHERE year = 2024
     AND month = 7
     AND day = 29
-    AND flights.id = 36
+    AND flights.id = 18
     )
 ;
 
+-- Diana destination (18):
++----+--------------+-----------------------------+--------+
+| id | abbreviation |          full_name          |  city  |
++----+--------------+-----------------------------+--------+
+| 6  | BOS          | Logan International Airport | Boston |
++----+--------------+-----------------------------+--------+
+
+-- Bruce destination (36):
 +----+--------------+-------------------+---------------+
 | id | abbreviation |     full_name     |     city      |
 +----+--------------+-------------------+---------------+
