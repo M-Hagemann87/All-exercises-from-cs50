@@ -309,12 +309,12 @@ WHERE airports.id IN (
 +----+--------------+-------------------+---------------+
 
 
-===---- Diana  | (770) 555-1861
+===---- Diana  | (770) 555-1861 /// Bruce: (367) 555-5533
 SELECT * FROM phone_calls
 WHERE year = 2024
 AND month = 7
 AND day = 28
-AND caller = '(770) 555-1861'
+AND caller = '(367) 555-5533'
 LIMIT 10;
 
 +-----+----------------+----------------+------+-------+-----+----------+
@@ -322,9 +322,9 @@ LIMIT 10;
 +-----+----------------+----------------+------+-------+-----+----------+
 | 255 | (770) 555-1861 | (725) 555-3243 | 2024 | 7     | 28  | 49       |
 +-----+----------------+----------------+------+-------+-----+----------+
---- Check people with phone number: (725) 555-3243
+--- Check people with phone number: Diana accomplice (725) 555-3243, Bruce Accomplice (375) 555-8161
 SELECT * FROM people
-WHERE  phone_number = '(725) 555-3243';
+WHERE  phone_number = '(375) 555-8161';
 
 +--------+--------+----------------+-----------------+---------------+
 |   id   |  name  |  phone_number  | passport_number | license_plate |
