@@ -1,0 +1,28 @@
+10 HTML tags:
+<!DOCTYPE html>
+<head>
+<title>
+<body>
+<nav>
+<button>
+<ul>
+<h1>
+<h2>
+<hr>
+<button>
+<img>
+<p>
+
+5 CSS properties:
+background-color:
+color:
+font-size:
+font-weight:
+line-height:
+
+Description of the choosen Javascript and Bootstrap:
+A: Use of navbar to go to another html pages, example:
+"<a class="nav-link" href="index.html">Survey</a>"
+
+For java the use in the function function checkMultiChoice(event)
+to count the survey buttons (e.g. countDogs)
