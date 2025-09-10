@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title %}Quote Result{% endblock %}
+{% block title %}Quote{% endblock %}
 
 {% block main %}
-<h3>Quote for {{ quote.name }} ({{ quote.symbol }})</h3>
-<p>Price: {{ quote.price | usd }}</p>
-<a href="/quote" class="btn btn-secondary mt-3">Look up another</a>
+<h3 class="mb-3">Get Quote</h3>
+<form action="/quote" method="post" class="row g-3">
+  <div class="col-auto">
+    <input name="symbol" class="form-control" placeholder="Symbol (e.g., AAPL)" autofocus required>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary" type="submit">Look up</button>
+  </div>
+</form>
 {% endblock %}
