@@ -282,8 +282,16 @@ def sell():
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash + proceeds, user_id)
 
         flash("Sold!")
-        
         return redirect("/")
     else:
+
+        rows = db.execute("""
+            SELECT symbol
+            FROM accounts
+            WHERE user_id = ?
+            GROUP BY symbol
+            HAVING SUM(shares) > 0
+        """, user_id)
+
         return render_template("sell.html", symbols=rows)
 
