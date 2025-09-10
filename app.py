@@ -40,7 +40,7 @@ def index():
 
     rows = db.execute("""
         SELECT symbol, SUM(shares) AS total_shares
-        FROM transactions
+        FROM accounts
         WHERE user_id = ?
         GROUP BY symbol
         HAVING total_shares > 0
@@ -98,7 +98,7 @@ def buy():
         if cost > cash:
             return apology("can't afford")
 
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
+        db.execute("INSERT INTO accounts (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
                    user_id, quote["symbol"], shares, price)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - cost, user_id)
 
@@ -114,11 +114,11 @@ def buy():
 @app.route("/history")
 @login_required
 def history():
-    """Show history of transactions"""
+    """Show history of accounts"""
     user_id = session["user_id"]
     rows = db.execute("""
         SELECT symbol, shares, price, transacted
-        FROM transactions
+        FROM accounts
         WHERE user_id = ?
         ORDER BY transacted DESC, id DESC
     """, user_id)
@@ -177,7 +177,6 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    """Get stock quote."""
     """Get stock quote."""
     if request.method == "POST":
             symbol = request.form.get("symbol")
@@ -246,7 +245,7 @@ def sell():
 
         owned_row = db.execute("""
             SELECT COALESCE(SUM(shares), 0) AS total
-            FROM transactions
+            FROM accounts
             WHERE user_id = ? AND symbol = ?
         """, user_id, symbol)[0]
         owned = owned_row["total"]
@@ -261,7 +260,7 @@ def sell():
         price = quote["price"]
         proceeds = shares * price
 
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
+        db.execute("INSERT INTO accounts (user_id, symbol, shares, price) VALUES (?, ?, ?, ?)",
                    user_id, symbol, -shares, price)
         cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash + proceeds, user_id)
@@ -270,12 +269,13 @@ def sell():
         return redirect("/")
     else:
 
-        symbols = db.execute("""
+        rows = db.execute("""
             SELECT symbol
             FROM accounts
             WHERE user_id = ?
             GROUP BY symbol
             HAVING SUM(shares) > 0
         """, user_id)
-        return render_template("sell.html", symbols=symbols)
+
+        return render_template("sell.html", symbols=rows)
 
