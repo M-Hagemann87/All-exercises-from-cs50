@@ -1,0 +1,13 @@
+{% block main %}
+<table>
+    <tr><th>Symbol</th><th>Shares</th><th>Price</th><th>Transacted</th></tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row.symbol }}</td>
+        <td>{{ row.shares }}</td>
+        <td>{{ row.price | usd }}</td>
+        <td>{{ row.transacted }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
