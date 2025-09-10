@@ -1,3 +1,4 @@
+{% block main %}
 <table>
     <tr><th>Symbol</th><th>Shares</th><th>Price</th><th>Transacted</th></tr>
     {% for row in rows %}
@@ -9,3 +10,4 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
