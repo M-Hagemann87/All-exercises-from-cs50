@@ -87,14 +87,12 @@ def buy():
         shares_raw = request.form.get("shares")
 
         quote = lookup(symbol) if symbol else None
-
         if not symbol or not quote:
             return apology("invalid symbol")
         if not shares_raw or not shares_raw.isdigit():
             return apology("shares must be a positive integer")
 
         shares = int(shares_raw)
-
         if shares <= 0:
             return apology("shares must be > 0")
 
@@ -113,7 +111,6 @@ def buy():
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - cost, user_id)
 
         flash("Bought!")
-
         return redirect("/")
     else:
         return render_template("buy.html")
@@ -126,7 +123,6 @@ def buy():
 @login_required
 def history():
     """Show history of accounts"""
-
     user_id = session["user_id"]
     rows = db.execute("""
         SELECT symbol, shares, price, transacted
@@ -134,7 +130,6 @@ def history():
         WHERE user_id = ?
         ORDER BY transacted DESC, id DESC
     """, user_id)
-
     return render_template("history.html", rows=rows)
 
 
@@ -198,7 +193,6 @@ def quote():
             quote = lookup(symbol)
             if not quote:
                 return apology("invalid symbol")
-
             return render_template("quoted.html", quote=quote)
     else:
         return render_template("quote.html")
@@ -234,7 +228,6 @@ def register():
         session["user_id"] = new_id
         flash("Registered!")
         return redirect("/")
-
     else:
         return render_template("register.html")
 
@@ -243,7 +236,6 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-
     user_id = session["user_id"]
 
     if request.method == "POST":
