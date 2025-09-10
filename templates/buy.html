@@ -1,25 +1,15 @@
 {% extends "layout.html" %}
-
-{% block title %}Buy{% endblock %}
-
 {% block main %}
-
 <h3 class="mb-3">Buy Shares</h3>
-
 <form action="/buy" method="post" class="row g-3">
-  
   <div class="col-md-4">
     <input name="symbol" class="form-control" placeholder="Symbol" required>
   </div>
-
   <div class="col-md-4">
     <input name="shares" class="form-control" placeholder="Shares" required>
   </div>
-
   <div class="col-12">
     <button class="btn btn-primary" type="submit">Buy</button>
   </div>
-
-
 </form>
 {% endblock %}
