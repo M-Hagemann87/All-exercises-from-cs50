@@ -15,6 +15,7 @@
     </tr>
   </thead>
   <tbody>
+
     {% for h in holdings %}
     <tr>
       <td>{{ h.symbol }}</td>
@@ -35,5 +36,6 @@
       <th class="text-end">{{ grand_total | usd }}</th>
     </tr>
   </tfoot>
+  
 </table>
 {% endblock %}
