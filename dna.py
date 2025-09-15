@@ -46,7 +46,7 @@ def main():
             if int(row[str_seq]) != longest_matches[str_seq]:
                 match = False
                 break
-        if match:
+ #       if match:
             print(row["name"])
             return
 
@@ -61,7 +61,7 @@ def longest_match(sequence, subsequence):
     sequence_length = len(sequence)
 
     # Check each character in sequence for most consecutive runs of subsequence
-#    for i in range(sequence_length):
+    for i in range(sequence_length):
 
         # Initialize count of consecutive runs
         count = 0
