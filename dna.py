@@ -1,3 +1,6 @@
+# DNA Project
+## Samples: AGAT, AATG, TATC
+
 import csv
 import sys
 
@@ -10,7 +13,7 @@ def main():
     name_csv_file = str()
     str_count = str()
 
-    # TODO: Check for command-line usage
+    ### TODO: Check for command-line usage
     try:
         if len(sys.argv) != 3:
             exit("Usage: python dna.py data.csv sequence.txt")
@@ -21,22 +24,22 @@ def main():
     except ValueError:
         exit("Invalid Input")
 
-    # TODO: Read database file into a variable
+    ### TODO: Read database file into a variable
     with open(f"{name_csv_file}") as file:
         reader = csv.DictReader(file)
         database = list(reader)
         strs = reader.fieldnames[1:]  # skip the "name" column
 
-    # TODO: Read DNA sequence file into a variable ##file.read().splitlines()
+    ### TODO: Read DNA sequence file into a variable ##file.read().splitlines()
     with open(f"{str_count}") as file:
         sequence = file.read()
 
-    # TODO: Find longest match of each STR in DNA sequence ### DNA = Sequence  ### STR = Subsequence
+    ### TODO: Find longest match of each STR in DNA sequence ### DNA = Sequence  ### STR = Subsequence
     longest_matches = {}
     for str_seq in strs:
         longest_matches[str_seq] = longest_match(sequence, str_seq)
 
-    # TODO: Check database for matching profiles
+    ### TODO: Check database for matching profiles
     for row in database:
         match = True
         for str_seq in strs:
@@ -49,7 +52,6 @@ def main():
 
     print("No match")
 
-
 def longest_match(sequence, subsequence):
     """Returns length of longest run of subsequence in sequence."""
 
@@ -59,7 +61,7 @@ def longest_match(sequence, subsequence):
     sequence_length = len(sequence)
 
     # Check each character in sequence for most consecutive runs of subsequence
-    for i in range(sequence_length):
+#    for i in range(sequence_length):
 
         # Initialize count of consecutive runs
         count = 0
@@ -86,6 +88,5 @@ def longest_match(sequence, subsequence):
 
     # After checking for runs at each character in seqeuence, return longest run found
     return longest_run
-
 
 main()
