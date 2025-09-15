@@ -1,5 +1,5 @@
 # Movies & Shows Suggester
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <https://www.youtube.com/watch?v=HjSyOWvcPe8>
 #### Description: This project is a Flask application that query for the best movies and shows from Netflix (up to 2025), from two different databases (shows.db, movies.db). It also has a API from openAI that assist with questions related to movies and shows (e.g. "bests shows in 2021", "movies with x,y,z actors", etc..).
 
 
