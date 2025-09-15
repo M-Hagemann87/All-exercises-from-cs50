@@ -10,7 +10,7 @@ import sys
 
 def main():
 
-    name_csv_file = str()
+    csv_file = str()
     str_count = str()
 
     ### TODO: Check for command-line usage
@@ -18,14 +18,14 @@ def main():
         if len(sys.argv) != 3:
             exit("Usage: python dna.py data.csv sequence.txt")
 
-        name_csv_file = sys.argv[1]
+        csv_file = sys.argv[1]
         str_count = sys.argv[2]
 
     except ValueError:
         exit("Invalid Input")
 
     ### TODO: Read database file into a variable
-    with open(f"{name_csv_file}") as file:
+    with open(f"{csv_file}") as file:
         reader = csv.DictReader(file)
         database = list(reader)
         strs = reader.fieldnames[1:]  # skip the "name" column
@@ -36,7 +36,7 @@ def main():
 
     ### TODO: Find longest match of each STR in DNA sequence ### DNA = Sequence  ### STR = Subsequence
     longest_matches = {}
-    for str_seq in strs:
+#    for str_seq in strs:
         longest_matches[str_seq] = longest_match(sequence, str_seq)
 
     ### TODO: Check database for matching profiles
@@ -46,7 +46,7 @@ def main():
             if int(row[str_seq]) != longest_matches[str_seq]:
                 match = False
                 break
- #       if match:
+        if match:
             print(row["name"])
             return
 
