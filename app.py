@@ -13,6 +13,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+### Database:
 db = SQL("sqlite:///finance.db")
 
 
@@ -64,6 +65,7 @@ def index():
             "total": total
         })
 
+### User cash
     cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
     grand_total = cash + portfolio_total
 
@@ -75,7 +77,7 @@ def index():
 @login_required
 def buy():
     """Buy shares of stock"""
-
+### check valid inpu
     if request.method == "POST":
         symbol = request.form.get("symbol")
         shares_raw = request.form.get("shares")
@@ -96,7 +98,7 @@ def buy():
         user_id = session["user_id"]
         cash_row = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
         cash = cash_row[0]["cash"]
-
+## Check if cash is enugh
         if cost > cash:
             return apology("can't afford")
 
@@ -116,6 +118,8 @@ def buy():
 @login_required
 def history():
     """Show history of accounts"""
+
+### Select the transactions:
     user_id = session["user_id"]
     rows = db.execute("""
         SELECT symbol, shares, price, transacted
@@ -154,6 +158,7 @@ def login():
 @app.route("/logout")
 def logout():
     """Log user out"""
+### Deleate clear the user:
     session.clear()
     return redirect("/")
 
